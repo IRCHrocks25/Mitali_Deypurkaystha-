@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitali Deypurkaystha — Unburdened Founder Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Montage';
+  src: url('Montage.woff') format('woff'),
+       url('Montage.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/* ── Credibility tagline ── */
+.cred-top-text{margin-bottom:40px;padding-top:4px;text-align:center}
+.cred-tagline{font-family:var(--display);font-size:clamp(22px,3vw,34px);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:12px}
+.cred-sub{font-size:16px;color:var(--sage);font-weight:300;line-height:1.8;max-width:640px;margin:0 auto}
+/* ── Problem image placeholder ── */
+.prob-img-row{margin-bottom:48px}
+.prob-img-placeholder{background:#1E1E1C;border:1px solid rgba(169,104,114,0.15);padding:24px 32px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)}
+.prob-img-placeholder svg{width:100%;height:auto;display:block}
+.prob-img-caption{font-family:var(--display);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(169,104,114,0.6);text-align:center;margin-top:12px}
+/* ── Bridge placeholder ── */
+.bridge-placeholder{margin:0 0 56px;padding:32px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07)}
+.bridge-placeholder svg{width:100%;height:auto;display:block}
+.sol-philosophy{font-size:17px;color:var(--sage);font-weight:300;line-height:1.85;max-width:660px;margin-top:16px;font-style:normal}
+/* ── About SVG bg ── */
+.about-svg-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* ── PC phase label ── */
+.pc-phase{font-family:var(--body);font-size:11px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:14px;line-height:1.4}
+
+
+/* ── Enhanced hover effects ── */
+/* Credibility badges */
+.cred-badge{transition:background 0.3s,transform 0.25s,box-shadow 0.25s}
+.cred-badge:hover{background:var(--charcoal);transform:translateY(-4px);box-shadow:0 12px 28px rgba(28,28,26,0.18)}
+/* Data cells */
+.d-cell{transition:background 0.25s,transform 0.25s,box-shadow 0.25s}
+.d-cell:hover{background:var(--charcoal);transform:translateY(-4px);box-shadow:0 12px 28px rgba(28,28,26,0.18)}
+/* Partnership cards */
+.pc{transition:border-color 0.3s,background 0.3s,transform 0.3s,box-shadow 0.3s}
+.pc:hover{border-color:rgba(169,104,114,0.5);background:#333330;transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,0.35)}
+/* diff rows */
+.diff-row{transition:background 0.2s,padding-left 0.2s}
+.diff-row:hover{background:rgba(169,104,114,0.04);padding-left:8px}
+/* Nav links */
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--rose);transition:width 0.25s ease}
+.nav-links a:hover::after{width:100%}
+/* Sol image wraps */
+.sol-img-wrap{transition:transform 0.3s,box-shadow 0.3s}
+.sol-img-wrap:hover{transform:scale(1.02);box-shadow:0 16px 40px rgba(28,28,26,0.12)}
+/* Problem cards */
+.prob-card{transition:background 0.3s,border-color 0.3s,transform 0.3s,box-shadow 0.3s}
+/* About photo badge */
+.about-badge{transition:transform 0.25s,box-shadow 0.25s}
+.about-badge:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(28,28,26,0.15)}
+/* Footer social */
+.footer-social a{transition:border-color 0.2s,color 0.2s,transform 0.2s}
+.footer-social a:hover{transform:translateY(-3px)}
+/* Buttons */
+.btn-dark,.btn-rose{transition:background 0.2s,transform 0.2s,box-shadow 0.2s}
+.btn-dark:hover,.btn-rose:hover{box-shadow:0 8px 24px rgba(28,28,26,0.25);transform:translateY(-3px)}
+</style>
+<style>
+:root {
+  --ink:       #1C1C1A;
+  --charcoal:  #2C2C2A;
+  --slate:     #2A3040;
+  --navy:      #1A2535;
+  --sage:      #6B7D70;
+  --sage-mid:  #8FA094;
+  --sage-pale: #C2CFCA;
+  --off-white: #F4F1EB;
+  --cream:     #EAE5DA;
+  --warm-white:#F9F7F2;
+  --rose:      #A96872;
+  --rose-hi:   #C4848E;
+  --rose-soft: #DBBFC3;
+  --rose-pale: #F0DDE0;
+  --gold:      #B89A6A;
+  --border:    #D5D0C6;
+  --display: 'Montage', Georgia, serif;
+  --body:    'DM Sans', system-ui, sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--warm-white);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.7}
+
+/* ─── CUSTOM CURSOR ─── */
+*, a, button { cursor: none !important; }
+#cursor { position:fixed; width:24px; height:24px; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform 0.12s ease, color 0.15s; display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--charcoal,#2C2C2A); line-height:1; user-select:none; text-shadow: 0 0 8px rgba(250,248,244,0.9), 0 0 2px rgba(250,248,244,0.6); }
+#cursor.hover { font-size:26px; color:var(--rose); transform:translate(-50%,-50%) rotate(45deg); text-shadow: 0 0 8px rgba(250,248,244,0.9); }
+
+/* ─── NAV ─── */
+nav{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:28px 52px;border-bottom:none;background:transparent}
+nav.scrolled{}
+.nav-logo{display:flex;align-items:center;text-decoration:none;opacity:1;transition:opacity 0.2s;flex-shrink:0}.nav-logo:hover{opacity:0.8}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-family:var(--body);font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(244,241,235,0.65);text-decoration:none;transition:color 0.2s;position:relative}
+.nav-links a:hover{color:var(--off-white)}
+.nav-pill{font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--warm-white);background:var(--rose);padding:11px 26px;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background 0.2s}
+.nav-pill:hover{background:var(--ink)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.nav-burger span{display:block;width:22px;height:1.5px;background:var(--off-white)}
+
+/* ─── MOBILE MENU ─── */
+.mob-menu{display:none;position:fixed;inset:0;background:var(--charcoal);z-index:600;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--display);font-size:28px;font-weight:400;color:var(--off-white);text-decoration:none;text-transform:uppercase;letter-spacing:0.02em}
+.mob-close{position:absolute;top:24px;right:32px;background:none;border:none;font-size:26px;color:var(--off-white)}
+
+/* ─── TICKER ─── */
+.ticker{background:var(--rose);padding:12px 0;overflow:hidden}
+.ticker-track{display:flex;animation:tick 28s linear infinite;white-space:nowrap}
+.ticker-item{font-family:var(--display);font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(249,247,242,0.85);padding:0 44px;flex-shrink:0}
+.ticker-item span{opacity:0.5;margin:0 8px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── BUTTONS ─── */
+.btn{display:inline-block;font-family:var(--body);font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;padding:16px 36px;transition:all 0.2s}
+.btn-dark{background:var(--charcoal);color:var(--warm-white);clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%)}
+.btn-dark:hover{background:var(--slate);transform:translateY(-2px)}
+.btn-rose{background:var(--rose);color:var(--warm-white);clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%)}
+.btn-rose:hover{background:var(--ink);transform:translateY(-2px)}
+.btn-ghost{color:var(--ink);font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:color 0.2s}
+.btn-ghost::after{content:'→';font-size:16px;transition:transform 0.2s}
+.btn-ghost:hover{color:var(--ink)}
+.btn-ghost:hover::after{transform:translateX(5px)}
+
+/* ══════════════════════════════════════
+   HERO — full-bleed image background
+══════════════════════════════════════ */
+#hero{
+  min-height:92vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  padding:140px 0 100px;
+  position:relative;
+  overflow:hidden;
+  background:var(--charcoal);
+}
+.hero-bg-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  z-index:0;
+}
+/* Overlay — subtle dark veil on left, image shows through on right */
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to right,
+    rgba(10,6,20,0.72) 0%,
+    rgba(10,6,20,0.52) 38%,
+    rgba(10,6,20,0.12) 68%,
+    rgba(10,6,20,0.0) 100%
+  );
+  z-index:1;
+}
+.hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:680px;
+  margin:0 0 0 80px;
+  padding:0;
+  width:100%;
+}
+.hero-tag{
+  font-family:var(--body);
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(196,148,158,0.85);
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:48px;
+}
+.hero-tag::before{content:'✦';font-size:9px;color:var(--rose)}
+.hero-h1{
+  font-family:var(--display);
+  font-size:clamp(42px,6.5vw,96px);
+  font-weight:400;
+  line-height:1.08;
+  color:#F5F0E8;
+  margin-bottom:0;
+  letter-spacing:0.01em;
+  max-width:640px;
+}
+.hero-h1 .accent{color:var(--rose-hi,#C4848E)}
+.hero-divider{width:56px;height:1px;background:var(--rose);margin:36px 0;opacity:0.7}
+.hero-sub{
+  font-size:18px;
+  font-weight:300;
+  color:rgba(235,228,218,0.72);
+  line-height:1.85;
+  max-width:500px;
+  margin-bottom:52px;
+}
+.hero-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+/* Light ghost button for image hero */
+.btn-ghost{
+  color:rgba(244,241,235,0.85);
+  font-family:var(--body);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:color 0.2s;
+  border-bottom:1px solid rgba(244,241,235,0.3);
+  padding-bottom:2px;
+}
+.btn-ghost::after{content:'→';font-size:16px;transition:transform 0.2s}
+.btn-ghost:hover{color:var(--warm-white);border-bottom-color:var(--rose)}
+.btn-ghost:hover::after{transform:translateX(5px)}
+.hero-foot{
+  position:absolute;
+  bottom:40px;
+  left:80px;
+  right:80px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  max-width:700px;
+  width:calc(100% - 160px);
+  z-index:2;
+}
+.hero-foot-label{font-size:12px;color:rgba(244,241,235,0.4);font-weight:300;letter-spacing:0.08em}
+.hero-foot-line{flex:1;height:1px;background:rgba(244,241,235,0.12);margin:0 32px}
+
+/* ══════════════════════════════════════
+   INTRO — DARK BAND
+══════════════════════════════════════ */
+#intro{background:var(--charcoal);padding:100px 0;position:relative;overflow:hidden}
+.intro-noise{display:none}
+.intro-inner{max-width:1100px;margin:0 auto;padding:0 52px;position:relative;z-index:1}
+.intro-eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose-hi);display:block;margin-bottom:28px}
+.intro-inner h2{font-family:var(--display);font-size:clamp(34px,4.5vw,62px);font-weight:400;color:var(--off-white);line-height:1.1;text-transform:none;letter-spacing:0.02em;max-width:680px;margin-bottom:28px}
+.intro-inner p{font-size:17px;font-weight:400;color:rgba(244,241,235,0.82);line-height:1.9;max-width:620px;margin-bottom:14px}
+/* Stats — horizontal strip */
+.intro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:72px;border-top:1px solid rgba(255,255,255,0.08)}
+.i-stat{padding:40px 36px;border-right:1px solid rgba(255,255,255,0.06);position:relative}
+.i-stat:last-child{border-right:none}
+.i-stat::before{content:'';position:absolute;top:0;left:36px;width:32px;height:2px;background:var(--rose)}
+.i-num{font-family:var(--display);font-size:60px;font-weight:400;color:var(--off-white);line-height:1;margin-bottom:10px;letter-spacing:0.02em}
+.i-num em{font-family:var(--body);font-style:normal;font-size:24px;color:var(--rose-hi);font-weight:300}
+.i-label{font-size:15px;color:rgba(244,241,235,0.78);font-weight:300;line-height:1.7;max-width:200px}
+
+/* ══════════════════════════════════════
+   CREDIBILITY
+══════════════════════════════════════ */
+#credibility{background:var(--cream);padding:72px 0}
+.cred-inner{max-width:1100px;margin:0 auto;padding:0 52px}
+.cred-press-bar{display:flex;flex-direction:column;align-items:center;gap:20px;margin-bottom:52px;text-align:center}
+.cred-press-label{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--sage);white-space:nowrap}
+.cred-press-line{width:48px;height:1px;background:var(--border)}
+.cred-logos{display:flex;gap:40px;flex-wrap:wrap;align-items:center;justify-content:center}
+.cred-logo{font-family:var(--display);font-size:16px;font-weight:400;letter-spacing:0.04em;text-transform:none;color:var(--sage);opacity:0.45;transition:opacity 0.2s}
+.cred-logo:hover{opacity:0.8}
+/* BADGE DIAMONDS / PENTAGONS */
+.cred-badges{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:48px}
+.cred-badge{background:var(--rose);padding:20px 22px;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:background 0.2s;display:flex;flex-direction:column;gap:6px}
+.cred-badge:hover{background:var(--charcoal)}
+
+.cb-tag{font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.7);display:block;margin-bottom:4px}
+.cb-text{font-family:var(--display);font-size:15px;font-weight:400;color:var(--warm-white);line-height:1.35}
+
+/* ══════════════════════════════════════
+   PROBLEM — CHARCOAL WITH DIAGONAL CUT
+══════════════════════════════════════ */
+#problem{background:var(--charcoal, #2C2C2A);padding:120px 0;position:relative;overflow:hidden}
+.problem-slash{position:absolute;top:-1px;left:0;right:0;height:60px;background:var(--cream);clip-path:polygon(0 0,100% 0,100% 100%)}
+.problem-slash-bot{position:absolute;bottom:-1px;left:0;right:0;height:60px;background:var(--warm-white);clip-path:polygon(0 0,100% 100%,0 100%)}
+.problem-wrap{max-width:1100px;margin:0 auto;padding:80px 52px 0;position:relative;z-index:1}
+/* Big pull quote — NEW SPLIT LAYOUT */
+.pq{text-align:center;padding:80px 52px;margin-bottom:0;background:var(--charcoal)}
+.pq-text{display:flex;flex-direction:column;align-items:center;max-width:820px;margin:0 auto}
+.pq-mark{font-family:var(--display);font-size:80px;font-weight:400;line-height:0.7;color:rgba(255,255,255,0.3);display:block;margin-bottom:28px;letter-spacing:0.01em}
+.pq blockquote{font-family:var(--display);font-size:clamp(22px,3.2vw,42px);font-weight:400;color:#fff;line-height:1.2;text-transform:none;letter-spacing:0.02em}
+.pq blockquote em{color:rgba(255,255,255,0.7);font-style:normal}
+/* Problem cards — PARALLELOGRAM shape, elevated pop */
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.prob-card{
+  background:#222220;
+  padding:48px 44px;
+  border:1px solid rgba(169,104,114,0.25);
+  position:relative;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);
+  transition:background 0.3s,border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  box-shadow:0 4px 24px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.04) inset;
+}
+.prob-card:hover{
+  background:#2A2A27;
+  border-color:rgba(169,104,114,0.6);
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(169,104,114,0.3), 0 1px 0 rgba(255,255,255,0.06) inset;
+}
+.prob-card:nth-child(even){clip-path:polygon(16px 0,100% 0,100% 100%,0 100%,0 16px)}
+.prob-n{font-family:var(--display);font-size:72px;font-weight:400;color:rgba(169,104,114,0.22);line-height:1;margin-bottom:16px;letter-spacing:0.1em}
+.prob-card h3{font-family:var(--display);font-size:20px;font-weight:400;color:#F2EDE6;margin-bottom:14px;text-transform:none;letter-spacing:0.01em;line-height:1.3}
+.prob-card p{font-size:16px;color:rgba(238,233,226,0.78);font-weight:400;line-height:1.85}
+
+/* ══════════════════════════════════════
+   DATA
+══════════════════════════════════════ */
+#data{background:var(--warm-white);padding:120px 0}
+.data-wrap{max-width:1100px;margin:0 auto;padding:0 52px}
+.data-head{text-align:center;margin-bottom:72px}
+.data-head h2{font-family:var(--display);font-size:clamp(42px,5.5vw,72px);font-weight:400;color:var(--ink);line-height:1.08;text-transform:none;letter-spacing:0.02em;margin-bottom:20px}
+.data-head p{font-size:17px;color:var(--sage);font-weight:300;line-height:1.85;max-width:580px;margin:0 auto}
+/* Cells — SKEWED tab shape */
+.data-cells{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.d-cell{padding:48px 40px;background:var(--cream);position:relative;border-bottom:3px solid var(--rose);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);transition:background 0.2s}
+.d-cell:hover{background:var(--ink)}
+.d-cell:hover .d-num,.d-cell:hover .d-label{color:var(--off-white)}
+.d-num{font-family:var(--display);font-size:64px;font-weight:400;color:var(--ink);line-height:1;margin-bottom:12px;letter-spacing:0.1em;transition:color 0.2s}
+.d-num sub{font-size:26px;vertical-align:baseline;color:var(--rose)}
+.d-label{font-size:16px;color:var(--sage);font-weight:300;line-height:1.7;max-width:200px;transition:color 0.2s}
+.data-footnote{margin-top:36px;text-align:center;font-family:var(--display);font-size:13px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--sage-mid)}
+
+/* ══════════════════════════════════════
+   DIFFERENT — sticky left + list right
+══════════════════════════════════════ */
+#different{background:var(--cream);padding:120px 0}
+.diff-inner{max-width:1100px;margin:0 auto;padding:0 52px;display:grid;grid-template-columns:5fr 7fr;gap:100px;align-items:start}
+.diff-left{position:sticky;top:120px}
+.diff-eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:20px}
+.diff-left h2{font-family:var(--display);font-size:clamp(30px,3.5vw,50px);font-weight:400;color:var(--ink);line-height:1.08;text-transform:none;letter-spacing:0.02em;margin-bottom:20px}
+.diff-left p{font-size:16px;color:var(--sage);font-weight:300;line-height:1.9;margin-bottom:14px}
+.diff-blockquote{background:var(--charcoal);padding:28px 28px 28px 24px;margin-top:36px;border-left:4px solid var(--rose);clip-path:polygon(0 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%)}
+.diff-blockquote p{font-family:var(--display);font-size:18px;font-weight:400;color:var(--off-white);line-height:1.4;margin-bottom:10px}
+.diff-blockquote cite{font-family:var(--body);font-size:14px;color:var(--rose-hi);font-style:normal;letter-spacing:0.04em}
+.diff-list{}
+.diff-row{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start;padding:28px 0;border-bottom:1px solid var(--border)}
+.diff-row:first-child{border-top:1px solid var(--border)}
+.diff-n{display:flex;align-items:flex-start;padding-top:2px;flex-shrink:0}
+.diff-icon{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--rose-soft);background:var(--warm-white);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s,border-color 0.2s}
+.diff-row:hover .diff-icon{background:var(--rose-pale);border-color:var(--rose)}
+.diff-icon svg{width:18px;height:18px;stroke:var(--rose);stroke-width:1.5;fill:none}
+.diff-row h3{font-family:var(--display);font-size:19px;font-weight:400;color:var(--ink);margin-bottom:8px;text-transform:none;letter-spacing:0.01em}
+.diff-row p{font-size:16px;color:var(--sage);font-weight:300;line-height:1.8}
+
+/* ══════════════════════════════════════
+   SOLUTION — ALTERNATING "HOW IT WORKS" LAYOUT
+══════════════════════════════════════ */
+#solution{background:var(--warm-white);padding:120px 0;position:relative}
+.sol-wrap{max-width:1000px;margin:0 auto;padding:0 52px;position:relative;z-index:1}
+.sol-head{text-align:center;margin-bottom:80px}
+.sol-eyebrow{font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:20px}
+.sol-head h2{font-family:var(--display);font-size:clamp(40px,5.5vw,72px);font-weight:400;color:var(--ink);text-transform:none;letter-spacing:0.02em;line-height:1.1;margin-bottom:20px}
+.sol-philosophy{font-size:17px;color:var(--sage);font-weight:300;line-height:1.85;max-width:660px;margin:24px auto 0;font-style:normal}
+
+/* Centre spine */
+.sol-track{position:relative;padding:20px 0}
+.sol-track::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);transform:translateX(-50%)}
+
+/* Each phase row — content | num | empty, alternating */
+.sol-row{display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;margin-bottom:100px;gap:0}
+.sol-row:last-child{margin-bottom:0}
+
+/* Odd rows: content left, num centre, empty right */
+.sol-row:nth-child(odd) .sol-content{grid-column:1;text-align:right;padding-right:52px}
+.sol-row:nth-child(odd) .sol-num-col{grid-column:2}
+.sol-row:nth-child(odd) .sol-empty{grid-column:3}
+
+/* Even rows: empty left, num centre, content right */
+.sol-row:nth-child(even) .sol-empty{grid-column:1}
+.sol-row:nth-child(even) .sol-num-col{grid-column:2}
+.sol-row:nth-child(even) .sol-content{grid-column:3;text-align:left;padding-left:52px}
+
+.sol-num-col{display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:1}
+.sol-num{font-family:var(--display);font-size:52px;font-weight:400;color:var(--ink);line-height:1;letter-spacing:-0.02em}
+.sol-node{width:12px;height:12px;border-radius:50%;border:2px solid var(--rose);background:var(--warm-white);margin:12px auto 0;flex-shrink:0}
+.sol-empty{}
+
+/* Bridge image */
+.sol-bridge-img{margin:0 0 72px;width:100%}
+.sol-bridge-img img{width:100%;height:auto;display:block;border-radius:2px}
+
+.sol-phase-label{display:inline-block;font-family:var(--body);font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm-white);background:var(--rose);padding:6px 16px;margin-bottom:20px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}
+.sol-content h3{font-family:var(--display);font-size:clamp(20px,2.5vw,30px);font-weight:400;color:var(--ink);margin-bottom:16px;line-height:1.2;letter-spacing:0.01em}
+.sol-content p{font-size:16px;color:var(--sage);font-weight:300;line-height:1.85;margin-bottom:20px}
+.sol-row:nth-child(odd) .s-list{text-align:right}
+.s-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.s-list li{font-size:15px;color:var(--sage);font-weight:300;padding-left:18px;position:relative}
+.sol-row:nth-child(odd) .s-list li{padding-left:0;padding-right:18px}
+.s-list li::before{content:'✦';position:absolute;left:0;top:2px;font-size:9px;color:var(--rose);line-height:1}
+.sol-row:nth-child(odd) .s-list li::before{left:auto;right:0}
+
+/* Bridge placeholder */
+.bridge-placeholder{display:none}
+.bridge-placeholder svg{width:100%;height:auto;display:block}
+
+/* ── GLOBAL: small titles/eyebrows — all sans-serif ── */
+.sol-eyebrow,.diff-eyebrow,.intro-eyebrow,.cred-press-label,.cb-tag,.s-phase,
+.sol-phase-label,.pc-phase,.tl-eyebrow,.test-eyebrow,.about-eyebrow,.lm-eyebrow,
+.hero-tag,.tl-day,.t-name,.sol-head p,.data-footnote,.prob-img-caption,
+.footer-col h4,.footer-bottom p,.f-links a,.pq-mark,.sol-philosophy,
+h3.diff-row,.diff-row h3,.tl-step h3,.pc h3,.test-head h2,.sol-phase-label,
+.part-cta p,.about-content p,.diff-left p,.data-head p,.sol-content p,
+.sol-head p,.lm-list li,.hero-sub,.hero-foot-label{font-family:var(--body)}
+
+/* ══════════════════════════════════════
+   PARTNERSHIP — DARK CARDS
+══════════════════════════════════════ */
+#partnership{background:var(--warm-white);padding:120px 0}
+.part-wrap{max-width:1100px;margin:0 auto;padding:0 52px}
+.part-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:72px}
+.part-head h2{font-family:var(--display);font-size:clamp(42px,5.5vw,72px);font-weight:400;color:var(--ink);line-height:1.08;text-transform:none;letter-spacing:0.02em}
+.part-head p{font-size:16px;color:var(--sage);font-weight:300;line-height:1.9}
+.part-head p+p{margin-top:12px;font-size:15px;color:var(--sage)}
+.part-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pc{background:var(--charcoal);padding:44px 36px;border:1px solid rgba(255,255,255,0.07);clip-path:polygon(0 0,100% 0,100% 100%,20px 100%,0 calc(100% - 20px));transition:border-color 0.3s,background 0.3s,transform 0.3s;position:relative}
+.pc:hover{border-color:rgba(169,104,114,0.45);background:#333330;transform:translateY(-5px)}
+.pc-num{display:inline-block;font-family:var(--body);font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--warm-white);background:var(--rose);padding:6px 18px;margin-bottom:20px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}.pc-num::before{display:none}
+.pc-phase{display:none}
+.pc h3{display:block;font-family:var(--display);font-size:24px;font-weight:400;letter-spacing:0.02em;text-transform:none;color:var(--off-white);background:none;border:none;padding:0;margin-bottom:16px;line-height:1.2;clip-path:none}
+.pc p{font-size:15px;color:rgba(244,241,235,0.6);font-weight:300;line-height:1.8;margin-bottom:20px}
+.pc ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px}
+.pc ul li{font-size:14px;color:rgba(244,241,235,0.55);font-weight:300;padding-left:18px;position:relative}
+.pc ul li::before{content:'✦';position:absolute;left:0;top:2px;font-size:9px;color:var(--rose);line-height:1}
+.pc a{font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(244,241,235,0.9);text-decoration:none;border-bottom:1.5px solid rgba(244,241,235,0.4);padding-bottom:2px;transition:color 0.2s,border-color 0.2s}
+.pc a:hover{color:var(--rose-muted,#C4848E);border-color:var(--rose)}
+.part-cta{text-align:center;margin-top:64px}
+.part-cta p{font-size:16px;color:var(--sage);margin-bottom:24px;font-weight:300}
+
+/* ══════════════════════════════════════
+   TIMELINE
+══════════════════════════════════════ */
+#timeline{background:var(--cream);padding:120px 0}
+.tl-wrap{max-width:1100px;margin:0 auto;padding:0 52px}
+.tl-head{text-align:center;margin-bottom:80px}
+.tl-eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:16px}
+.tl-head h2{font-family:var(--display);font-size:clamp(34px,4.5vw,62px);font-weight:400;color:var(--ink);text-transform:none;letter-spacing:0.02em;line-height:1.05;margin-bottom:14px}
+.tl-head p{font-size:16px;color:var(--sage);font-weight:300;max-width:440px;margin:0 auto;line-height:1.8}
+/* Horizontal steps with oversized numbers */
+.tl-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.tl-steps::before{content:'';position:absolute;top:17px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:1px;background:var(--rose);opacity:0.3;z-index:0}
+.tl-step{padding:0 20px;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center}
+.tl-dot{width:14px;height:14px;border:2px solid var(--rose);background:var(--cream);border-radius:50%;margin:10px auto 24px;position:relative;z-index:1;flex-shrink:0}
+.tl-dot::after{content:'';position:absolute;inset:-5px;border:1px solid var(--rose-soft);border-radius:50%}
+.tl-day{display:inline-block;font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--warm-white);background:var(--rose);padding:7px 18px;margin-bottom:20px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%)}
+.tl-step h3{font-family:var(--display);font-size:18px;font-weight:400;color:var(--ink);text-transform:none;letter-spacing:0.01em;margin-bottom:12px;line-height:1.2}
+.tl-step p{font-size:16px;color:var(--sage);font-weight:300;line-height:1.8}
+
+/* ══════════════════════════════════════
+   TESTIMONIALS — SPLIT SLIDER LAYOUT
+══════════════════════════════════════ */
+#testimonials{background:var(--warm-white);padding:0;overflow:hidden}
+.test-outer{max-width:1100px;margin:0 auto;padding:0 52px;display:grid;grid-template-columns:340px 1fr;min-height:520px}
+
+/* Left panel */
+.test-left{padding:80px 52px 80px 0;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:space-between}
+.test-eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:20px}
+.test-left h2{font-family:var(--display);font-size:clamp(28px,3.5vw,46px);font-weight:400;color:var(--ink);line-height:1.15;margin-bottom:20px;text-transform:none}
+.test-left p{font-size:15px;color:var(--sage);font-weight:300;line-height:1.8;max-width:260px}
+.test-arrows{display:flex;gap:12px;margin-top:48px}
+.test-arrow{width:44px;height:44px;border:1px solid var(--border);background:none;display:flex;align-items:center;justify-content:center;cursor:none;transition:background 0.2s,border-color 0.2s;font-size:16px;color:var(--ink);flex-shrink:0}
+.test-arrow:hover{background:var(--ink);color:var(--warm-white);border-color:var(--ink)}
+
+/* Right panel — slide area */
+.test-right{padding:80px 0 80px 72px;position:relative;overflow:hidden}
+.test-slides{position:relative;width:100%}
+.test-slide{display:none;flex-direction:column}
+.test-slide.active{display:flex}
+.test-quote-mark{font-family:Georgia,serif;font-size:80px;line-height:0.8;color:var(--border);margin-bottom:28px;display:block;letter-spacing:-0.02em}
+.test-slide blockquote{font-family:var(--display);font-size:clamp(18px,2.2vw,29px);font-weight:400;color:var(--ink);line-height:1.35;margin-bottom:28px;font-style:normal}
+.test-slide .test-body{font-size:16px;color:var(--sage);font-weight:300;line-height:1.8;margin-bottom:40px;max-width:580px}
+.test-divider{width:100%;height:1px;background:var(--border);margin-bottom:28px}
+.test-attribution{display:flex;align-items:center;gap:16px}
+.test-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--sage-pale),var(--sage));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--display);font-size:16px;color:var(--warm-white)}
+.test-stars{display:flex;gap:3px;margin-bottom:5px}
+.test-star{color:var(--rose);font-size:13px}
+.test-name{font-size:15px;font-weight:500;color:var(--ink);font-family:var(--body)}
+.test-name span{font-weight:300;color:var(--sage)}
+
+/* Dots */
+.test-dots{display:flex;gap:8px;margin-top:40px}
+.test-dot{width:24px;height:3px;background:var(--border);cursor:none;transition:background 0.2s,width 0.2s}
+.test-dot.active{background:var(--rose);width:40px}
+
+/* ══════════════════════════════════════
+   ABOUT — FULL SPLIT
+══════════════════════════════════════ */
+#about{background:var(--warm-white);padding:0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;min-height:88vh}
+.about-photo{background:linear-gradient(145deg,#6B8070 0%,#4E6254 60%,#3A4D41 100%);position:relative;overflow:hidden;min-height:600px}
+.about-photo-text{position:absolute;bottom:-20px;left:-10px;font-family:var(--display);font-size:clamp(120px,18vw,260px);font-weight:400;color:rgba(255,255,255,0.05);line-height:1;pointer-events:none;text-transform:none;letter-spacing:0.01em}
+.about-badge{position:absolute;bottom:48px;right:48px;background:var(--warm-white);padding:24px 26px;max-width:230px;clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)}
+.about-badge p{font-family:var(--body);font-size:16px;font-style:italic;color:var(--rose);line-height:1.4;margin-bottom:10px}
+.about-badge cite{font-family:var(--display);font-size:12px;color:var(--sage);font-style:normal;letter-spacing:0.08em;text-transform:uppercase}
+.about-content{padding:100px 80px;display:flex;flex-direction:column;justify-content:center}
+.about-eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:20px}
+.about-content h2{font-family:var(--display);font-size:clamp(30px,3.5vw,50px);font-weight:400;color:var(--ink);text-transform:none;letter-spacing:0.02em;line-height:1.05;margin-bottom:28px}
+.about-content p{font-size:16px;color:var(--sage);font-weight:300;line-height:1.9;margin-bottom:14px}
+.about-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;margin-bottom:36px}
+.a-tag{font-family:var(--display);font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);border:1.5px solid var(--border);padding:8px 14px;transition:background 0.2s,color 0.2s}
+.a-tag:hover{background:var(--ink);color:var(--off-white);border-color:var(--ink)}
+
+/* ══════════════════════════════════════
+   LEAD MAGNET
+══════════════════════════════════════ */
+#leadmagnet{background:var(--cream);padding:120px 0;position:relative;overflow:hidden}
+.lm-geo{position:absolute;top:50%;right:-80px;transform:translateY(-50%);width:400px;height:400px;border:1px solid rgba(169,104,114,0.12);transform:translateY(-50%) rotate(30deg)}
+.lm-geo2{position:absolute;top:50%;right:80px;transform:translateY(-50%);width:240px;height:240px;border:1px solid rgba(169,104,114,0.06);transform:translateY(-50%) rotate(15deg)}
+.lm-inner{max-width:1100px;margin:0 auto;padding:0 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
+.lm-eyebrow{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:20px}
+.lm-inner h2{font-family:var(--display);font-size:clamp(32px,4vw,58px);font-weight:400;color:var(--off-white);text-transform:none;letter-spacing:0.02em;line-height:1.05;margin-bottom:20px}
+.lm-inner h2 em{color:var(--rose-hi);font-style:normal}
+.lm-inner p{font-size:16px;color:var(--sage);font-weight:300;line-height:1.9;margin-bottom:14px}
+.lm-list{list-style:none;margin:24px 0;display:flex;flex-direction:column;gap:12px}
+.lm-list li{font-size:16px;color:var(--ink);font-weight:300;padding-left:22px;position:relative}
+.lm-list li::before{content:'✦';position:absolute;left:0;top:2px;font-size:9px;color:var(--rose);line-height:1}
+/* Form box — TRAPEZOID top */
+.lm-form{background:var(--warm-white);border:1px solid var(--border);padding:52px 44px;clip-path:polygon(16px 0,100% 0,100% 100%,0 100%,0 16px)}
+.lm-form h3{font-family:var(--display);font-size:24px;font-weight:400;color:var(--ink);text-transform:none;letter-spacing:0.1em;margin-bottom:6px}
+.lm-subtitle{font-size:14px;color:var(--sage);font-weight:300;margin-bottom:32px;display:block}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-family:var(--display);font-size:11px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--sage);margin-bottom:9px}
+.fg input{width:100%;background:var(--warm-white);border:1px solid var(--border);color:var(--ink);padding:13px 16px;font-family:var(--body);font-size:16px;font-weight:400;outline:none;transition:border-color 0.2s;clip-path:polygon(0 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%)}
+.fg input::placeholder{color:var(--sage-pale,#C2CFCA)}
+.fg input:focus{border-color:var(--rose)}
+.form-btn{width:100%;background:var(--rose);border:none;color:var(--warm-white);padding:16px;font-family:var(--body);font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:none;transition:background 0.2s;margin-top:6px;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.form-btn:hover{background:var(--ink)}
+.form-priv{font-size:13px;color:var(--text-light,var(--sage));text-align:center;margin-top:14px;font-weight:300}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{background:var(--charcoal)}
+.footer-top{max-width:1280px;margin:0 auto;padding:80px 52px 60px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;border-bottom:1px solid rgba(255,255,255,0.07)}
+.footer-logo{margin-bottom:16px;display:block}.footer-logo svg{display:block}.footer-brand h3{font-family:var(--display);font-size:20px;font-weight:400;color:var(--off-white);text-transform:none;letter-spacing:0.02em;margin-bottom:14px}
+.footer-brand p{font-size:15px;color:rgba(244,241,235,0.72);font-weight:300;line-height:1.8;max-width:270px;margin-bottom:28px}
+.footer-social{display:flex;gap:10px}
+.footer-social a{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.1);color:rgba(244,241,235,0.4);text-decoration:none;font-size:12px;font-family:var(--display);font-weight:400;transition:all 0.2s;clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%)}
+.footer-social a:hover{border-color:var(--rose);color:var(--rose)}
+.footer-col h4{font-family:var(--display);font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(244,241,235,0.55);margin-bottom:24px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.footer-col ul li a{font-size:16px;color:rgba(244,241,235,0.75);text-decoration:none;font-weight:300;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--off-white)}
+.footer-bottom{max-width:1280px;margin:0 auto;padding:22px 52px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-family:var(--display);font-size:13px;color:rgba(244,241,235,0.55);font-weight:400;letter-spacing:0.04em}
+.f-links{display:flex;gap:24px}
+.f-links a{font-family:var(--display);font-size:10px;color:rgba(244,241,235,0.25);text-decoration:none;letter-spacing:0.01em;transition:color 0.2s}
+.f-links a:hover{color:var(--off-white)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  #hero{min-height:auto;padding:80px 0 60px}
+  .hero-inner{padding:0 48px}
+  .about-grid{grid-template-columns:1fr}.about-content{padding:60px 48px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  .data-head,.part-head{grid-template-columns:1fr;gap:32px}
+  .diff-inner{grid-template-columns:1fr;gap:60px}.diff-left{position:static}
+  .lm-inner{grid-template-columns:1fr;gap:56px}
+  .tl-steps{grid-template-columns:1fr;gap:40px}.tl-steps::before{display:none}
+  .test-outer{grid-template-columns:1fr}
+  .test-left{padding:60px 52px 40px;border-right:none;border-bottom:1px solid var(--border);flex-direction:row;align-items:flex-start;gap:40px;flex-wrap:wrap}
+  .test-right{padding:48px 52px 60px}
+  .pq{padding:56px 24px}
+}
+@media(max-width:768px){
+  nav{padding:16px 24px}nav.scrolled{padding:12px 24px}
+  .nav-links,.nav-pill{display:none}.nav-burger{display:flex}
+  .hero-inner{padding:0 24px}.hero-foot{left:24px;right:24px;width:calc(100% - 48px)}
+  .intro-inner,.cred-inner,.problem-wrap,.data-wrap,.sol-wrap,.part-wrap,.tl-wrap,.lm-inner,.about-content,.test-outer{padding-left:24px!important;padding-right:24px!important}
+  .cred-badges{grid-template-columns:1fr 1fr;gap:8px}
+  .intro-stats,.prob-grid,.part-cards,.test-grid,.data-cells{grid-template-columns:1fr}
+  .sol-track::before{display:none}.sol-row{grid-template-columns:1fr!important;gap:24px}.sol-num-col{flex-direction:row;justify-content:flex-start;gap:12px;order:-1}.sol-node{margin:0}.sol-content{grid-column:1!important;text-align:left!important;padding:0!important}.sol-empty{display:none}.sol-row:nth-child(odd) .s-list li,.sol-row:nth-child(even) .s-list li{padding-left:18px;padding-right:0}.sol-row:nth-child(odd) .s-list li::before,.sol-row:nth-child(even) .s-list li::before{left:0;right:auto}
+  .footer-top{grid-template-columns:1fr;padding:40px 24px 32px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:16px 24px}
+  .about-content{padding:40px 24px!important}
+  .tl-steps{grid-template-columns:1fr}
+}
+/* ── Credibility tagline ── */
+.cred-top-text{margin-bottom:40px;padding-top:4px;text-align:center}
+.cred-tagline{font-family:var(--display);font-size:clamp(22px,3vw,34px);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:12px}
+.cred-sub{font-size:16px;color:var(--sage);font-weight:300;line-height:1.8;max-width:640px;margin:0 auto}
+/* ── Problem image placeholder ── */
+.prob-img-row{margin-bottom:48px}
+.prob-img-placeholder{background:#1E1E1C;border:1px solid rgba(169,104,114,0.15);padding:24px 32px;position:relative;clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)}
+.prob-img-placeholder svg{width:100%;height:auto;display:block}
+.prob-img-caption{font-family:var(--display);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(169,104,114,0.6);text-align:center;margin-top:12px}
+/* ── Bridge placeholder ── */
+.bridge-placeholder{margin:0 0 56px;padding:32px 0;border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07)}
+.bridge-placeholder svg{width:100%;height:auto;display:block}
+.sol-philosophy{font-size:17px;color:var(--sage);font-weight:300;line-height:1.85;max-width:660px;margin-top:16px;font-style:normal}
+/* ── About SVG bg ── */
+.about-svg-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* ── PC phase label ── */
+.pc-phase{font-family:var(--body);font-size:11px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:14px;line-height:1.4}
+
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobileMenu">
+  <button class="mob-close" onclick="closeMobile()">✕</button>
+  <a href="#problem" onclick="closeMobile()">Problem</a>
+  <a href="#solution" onclick="closeMobile()">Solution</a>
+  <a href="#partnership" onclick="closeMobile()">Partnership</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#leadmagnet" onclick="closeMobile()">Free Map</a>
+</div>
+
+
+
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <img class="hero-bg-img" src="hero-bg.png" alt="Mitali Deypurkaystha on stage" loading="eager">
+  <div class="hero-overlay"></div>
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo" aria-label="The Unburdened Founder"><svg width="160" height="31" viewBox="0 0 420 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.5621 19.5257V44.4127C64.5621 46.3543 64.8489 47.6339 65.4225 48.2517C66.0403 48.8253 67.1214 49.1121 68.6658 49.1121V49.3107H60.0612V37.1981C59.4876 39.4044 58.6933 41.346 57.6784 43.0228C56.7076 44.6554 55.5824 46.0233 54.3028 47.1265C53.0231 48.1855 51.6552 48.9798 50.1991 49.5093C48.7429 50.0829 47.2868 50.3697 45.8306 50.3697C44.1979 50.3697 42.6094 50.0388 41.065 49.3769C39.5647 48.715 38.2189 47.7442 37.0275 46.4646C35.8361 45.1849 34.8874 43.5964 34.1814 41.699C33.4753 39.7574 33.1223 37.5291 33.1223 35.0139V19.4595C33.1223 17.5621 32.8135 16.3266 32.1957 15.753C31.6221 15.1352 30.563 14.8263 29.0186 14.8263V14.6277H41.7931V14.8263C40.2487 14.8263 39.1676 15.1352 38.5498 15.753C37.9762 16.3266 37.6673 17.5621 37.6232 19.4595V35.0139C37.6232 37.132 37.91 39.0073 38.4836 40.64C39.0573 42.2285 39.8074 43.5743 40.7341 44.6775C41.6607 45.7806 42.7197 46.619 43.9111 47.1927C45.1467 47.7222 46.4042 47.9869 47.6839 47.9869C49.1842 47.9869 50.6624 47.6119 52.1185 46.8617C53.6188 46.1116 54.9426 44.9864 56.0899 43.4861C57.2813 41.9858 58.23 40.0884 58.936 37.7938C59.6861 35.4552 60.0612 32.7414 60.0612 29.6526V19.3933C60.0171 17.5401 59.6861 16.3266 59.0684 15.753C58.4947 15.1352 57.4357 14.8263 55.8913 14.8263V14.6277H68.6658V14.8263C67.1214 14.8263 66.0403 15.1352 65.4225 15.753C64.8489 16.3266 64.5621 17.5842 64.5621 19.5257Z" fill="white"/>
+  <path d="M106.967 44.3465C106.967 46.2881 107.254 47.5677 107.828 48.1855C108.446 48.7591 109.527 49.046 111.071 49.046V49.2445H98.2967V49.046C99.8411 49.046 100.922 48.7591 101.54 48.1855C102.158 47.5677 102.467 46.2881 102.467 44.3465V28.7922C102.467 26.6741 102.18 24.8208 101.606 23.2323C101.032 21.5996 100.282 20.2538 99.3557 19.1948C98.429 18.0916 97.348 17.2753 96.1124 16.7458C94.921 16.1721 93.6855 15.8853 92.4059 15.8853C90.9056 15.8853 89.4053 16.2604 87.905 17.0105C86.4489 17.7166 85.1251 18.8418 83.9337 20.3862C82.7864 21.8865 81.8377 23.7839 81.0876 26.0784C80.3815 28.3288 80.0285 31.0205 80.0285 34.1535V44.4127C80.0727 46.3101 80.3815 47.5677 80.9552 48.1855C81.5729 48.7591 82.654 49.046 84.1984 49.046V49.2445H71.424V49.046C72.9684 49.046 74.0274 48.7591 74.601 48.1855C75.2188 47.5677 75.5277 46.2881 75.5277 44.3465V19.3933C75.5277 18.4226 75.4615 17.6504 75.3291 17.0767C75.1967 16.459 74.9541 15.9956 74.601 15.6868C74.2922 15.3338 73.873 15.0911 73.3435 14.9587C72.8139 14.8263 72.1741 14.7601 71.424 14.7601V14.4954H80.0285V26.6741C80.6022 24.4237 81.3744 22.4822 82.3451 20.8495C83.36 19.2168 84.5073 17.8489 85.787 16.7458C87.0666 15.6426 88.4345 14.8263 89.8907 14.2968C91.3468 13.7673 92.803 13.5025 94.2591 13.5025C95.8918 13.5025 97.4583 13.8335 98.9585 14.4954C100.503 15.1131 101.871 16.0839 103.062 17.4077C104.254 18.6873 105.202 20.2759 105.908 22.1733C106.614 24.0707 106.967 26.277 106.967 28.7922V44.3465Z" fill="white"/>
+  <path d="M132.303 13.6349C134.994 13.6349 137.355 14.1203 139.385 15.0911C141.415 16.0618 143.114 17.3856 144.482 19.0624C145.849 20.6951 146.864 22.6366 147.526 24.887C148.232 27.0933 148.585 29.454 148.585 31.9692C148.585 34.4844 148.166 36.8672 147.328 39.1176C146.489 41.368 145.298 43.3316 143.753 45.0084C142.209 46.6411 140.334 47.9428 138.127 48.9136C135.965 49.8843 133.538 50.3697 130.847 50.3697C128.376 50.3697 126.059 49.8843 123.897 48.9136C121.735 47.9428 119.837 46.6852 118.205 45.1408C116.616 43.5964 115.358 41.8976 114.432 40.0443C113.505 38.1469 113.042 36.2715 113.042 34.4182V4.89798C113.042 2.95644 112.733 1.69885 112.115 1.12521C111.542 0.507445 110.482 0.198564 108.938 0.198564V0H117.543V23.6294C118.69 20.7171 120.477 18.3343 122.904 16.481C125.331 14.5836 128.464 13.6349 132.303 13.6349ZM130.648 48.3841C132.722 48.3841 134.553 47.9649 136.142 47.1265C137.774 46.2881 139.142 45.1408 140.245 43.6847C141.393 42.2285 142.253 40.5076 142.827 38.5219C143.445 36.4921 143.753 34.3079 143.753 31.9692C143.753 29.6306 143.445 27.4684 142.827 25.4827C142.253 23.4529 141.393 21.71 140.245 20.2538C139.142 18.7976 137.774 17.6504 136.142 16.812C134.553 15.9736 132.722 15.5544 130.648 15.5544C128.706 15.5544 126.919 15.9736 125.287 16.812C123.698 17.6504 122.33 18.7976 121.183 20.2538C120.036 21.71 119.131 23.4529 118.469 25.4827C117.852 27.4684 117.543 29.6306 117.543 31.9692C117.543 34.3079 117.874 36.4921 118.535 38.5219C119.197 40.5076 120.102 42.2285 121.249 43.6847C122.441 45.1408 123.831 46.2881 125.419 47.1265C127.052 47.9649 128.795 48.3841 130.648 48.3841Z" fill="white"/>
+  <path d="M187.761 19.5257V44.4127C187.761 46.3543 188.048 47.6339 188.622 48.2517C189.239 48.8253 190.321 49.1121 191.865 49.1121V49.3107H183.26V37.1981C182.687 39.4044 181.893 41.346 180.878 43.0228C179.907 44.6554 178.782 46.0233 177.502 47.1265C176.222 48.1855 174.854 48.9798 173.398 49.5093C171.942 50.0829 170.486 50.3697 169.03 50.3697C167.397 50.3697 165.809 50.0388 164.264 49.3769C162.764 48.715 161.418 47.7442 160.227 46.4646C159.035 45.1849 158.087 43.5964 157.381 41.699C156.675 39.7574 156.322 37.5291 156.322 35.0139V19.4595C156.322 17.5621 156.013 16.3266 155.395 15.753C154.821 15.1352 153.762 14.8263 152.218 14.8263V14.6277H164.992V14.8263C163.448 14.8263 162.367 15.1352 161.749 15.753C161.175 16.3266 160.867 17.5621 160.822 19.4595V35.0139C160.822 37.132 161.109 39.0073 161.683 40.64C162.256 42.2285 163.007 43.5743 163.933 44.6775C164.86 45.7806 165.919 46.619 167.11 47.1927C168.346 47.7222 169.603 47.9869 170.883 47.9869C172.383 47.9869 173.862 47.6119 175.318 46.8617C176.818 46.1116 178.142 44.9864 179.289 43.4861C180.48 41.9858 181.429 40.0884 182.135 37.7938C182.885 35.4552 183.26 32.7414 183.26 29.6526V19.3933C183.216 17.5401 182.885 16.3266 182.268 15.753C181.694 15.1352 180.635 14.8263 179.091 14.8263V14.6277H191.865V14.8263C190.321 14.8263 189.239 15.1352 188.622 15.753C188.048 16.3266 187.761 17.5842 187.761 19.5257Z" fill="white"/>
+  <path d="M203.823 26.7403C204.441 24.3575 205.302 22.3057 206.405 20.5847C207.508 18.8197 208.766 17.4077 210.178 16.3487C211.59 15.2455 213.09 14.4733 214.678 14.032C216.267 13.5908 217.855 13.4584 219.444 13.6349V17.5401H219.378C218.098 17.187 216.907 17.0105 215.804 17.0105C214.259 17.0105 212.759 17.3415 211.303 18.0034C209.847 18.6211 208.567 19.636 207.464 21.0481C206.361 22.416 205.478 24.181 204.816 26.3432C204.154 28.5053 203.823 31.1308 203.823 34.2196V44.4789C203.868 46.3763 204.176 47.6339 204.75 48.2517C205.368 48.8253 206.449 49.1121 207.993 49.1121V49.3107H195.219V49.1121C196.763 49.1121 197.822 48.8253 198.396 48.2517C199.014 47.6339 199.323 46.3543 199.323 44.4127V19.5257C199.323 17.5842 199.014 16.3266 198.396 15.753C197.822 15.1352 196.763 14.8263 195.219 14.8263V14.6277H203.823V26.7403Z" fill="white"/>
+  <path d="M256.321 44.3465C256.321 46.2881 256.607 47.5677 257.181 48.1855C257.799 48.7591 258.88 49.046 260.424 49.046V49.2445H251.82V40.64C250.628 43.5523 248.797 45.913 246.326 47.7222C243.899 49.4872 240.81 50.3697 237.06 50.3697C234.368 50.3697 231.985 49.8843 229.911 48.9136C227.881 47.9428 226.183 46.6411 224.815 45.0084C223.491 43.3316 222.476 41.368 221.77 39.1176C221.108 36.8672 220.777 34.4844 220.777 31.9692C220.777 29.454 221.108 27.0933 221.77 24.887C222.476 22.6366 223.513 20.6951 224.881 19.0624C226.249 17.3856 227.948 16.0618 229.977 15.0911C232.007 14.1203 234.368 13.6349 237.06 13.6349C240.899 13.6349 244.031 14.5836 246.458 16.481C248.885 18.3343 250.672 20.7171 251.82 23.6294V4.83179C251.776 2.93437 251.445 1.69885 250.827 1.12521C250.253 0.507445 249.194 0.198564 247.65 0.198564V0H256.321V44.3465ZM238.714 48.3841C240.568 48.3841 242.288 47.9649 243.877 47.1265C245.51 46.2881 246.9 45.1408 248.047 43.6847C249.238 42.2285 250.165 40.5076 250.827 38.5219C251.489 36.4921 251.82 34.3079 251.82 31.9692C251.82 29.6306 251.489 27.4684 250.827 25.4827C250.209 23.4529 249.327 21.71 248.179 20.2538C247.032 18.7976 245.642 17.6504 244.009 16.812C242.421 15.9736 240.656 15.5544 238.714 15.5544C236.64 15.5544 234.787 15.9736 233.154 16.812C231.566 17.6504 230.198 18.7976 229.051 20.2538C227.948 21.71 227.087 23.4529 226.469 25.4827C225.896 27.4684 225.609 29.6306 225.609 31.9692C225.609 34.3079 225.896 36.4921 226.469 38.5219C227.087 40.5076 227.948 42.2285 229.051 43.6847C230.198 45.1408 231.566 46.2881 233.154 47.1265C234.787 47.9649 236.64 48.3841 238.714 48.3841Z" fill="white"/>
+  <path d="M294.793 40.1766V46.7293C293.69 47.3912 292.609 47.9428 291.55 48.3841C290.491 48.8253 289.409 49.1783 288.306 49.4431C287.247 49.7078 286.122 49.8843 284.931 49.9726C283.783 50.105 282.548 50.1712 281.224 50.1712C278.974 50.1712 276.811 49.752 274.738 48.9136C272.664 48.0311 270.832 46.7955 269.244 45.207C267.699 43.6185 266.442 41.699 265.471 39.4486C264.544 37.1981 264.081 34.6609 264.081 31.8368C264.081 29.3217 264.478 26.9609 265.273 24.7546C266.067 22.5042 267.148 20.5627 268.516 18.93C269.928 17.2532 271.583 15.9295 273.48 14.9587C275.422 13.9879 277.517 13.5025 279.768 13.5025C282.062 13.5025 284.18 13.9217 286.122 14.7601C288.108 15.5985 289.807 16.7899 291.219 18.3343C292.675 19.8346 293.8 21.6658 294.594 23.828C295.433 25.946 295.852 28.3068 295.852 30.9102L290.954 30.844H268.979C268.935 31.0646 268.913 31.3956 268.913 31.8368C268.913 34.1755 269.178 36.3818 269.707 38.4557C270.281 40.5297 271.119 42.3609 272.222 43.9494C273.326 45.4938 274.671 46.7293 276.26 47.656C277.848 48.5385 279.68 48.9798 281.754 48.9798C284.798 48.9798 287.424 48.1855 289.63 46.597C291.836 44.9643 293.447 42.8242 294.462 40.1766H294.793ZM279.768 14.7601C276.811 14.7601 274.34 16.0398 272.355 18.5991C270.413 21.1143 269.288 24.7988 268.979 29.6526H287.644C288.792 29.6526 289.63 29.432 290.16 28.9907C290.689 28.5495 290.844 27.689 290.623 26.4094C290.005 22.4822 288.681 19.5698 286.652 17.6724C284.666 15.7309 282.371 14.7601 279.768 14.7601Z" fill="white"/>
+  <path d="M335.332 44.3465C335.332 46.2881 335.619 47.5677 336.192 48.1855C336.81 48.7591 337.891 49.046 339.436 49.046V49.2445H326.661V49.046C328.206 49.046 329.287 48.7591 329.904 48.1855C330.522 47.5677 330.831 46.2881 330.831 44.3465V28.7922C330.831 26.6741 330.544 24.8208 329.971 23.2323C329.397 21.5996 328.647 20.2538 327.72 19.1948C326.794 18.0916 325.712 17.2753 324.477 16.7458C323.286 16.1721 322.05 15.8853 320.77 15.8853C319.27 15.8853 317.77 16.2604 316.27 17.0105C314.813 17.7166 313.49 18.8418 312.298 20.3862C311.151 21.8865 310.202 23.7839 309.452 26.0784C308.746 28.3288 308.393 31.0205 308.393 34.1535V44.4127C308.437 46.3101 308.746 47.5677 309.32 48.1855C309.937 48.7591 311.019 49.046 312.563 49.046V49.2445H299.789V49.046C301.333 49.046 302.392 48.7591 302.966 48.1855C303.583 47.5677 303.892 46.2881 303.892 44.3465V19.3933C303.892 18.4226 303.826 17.6504 303.694 17.0767C303.561 16.459 303.319 15.9956 302.966 15.6868C302.657 15.3338 302.237 15.0911 301.708 14.9587C301.178 14.8263 300.539 14.7601 299.789 14.7601V14.4954H308.393V26.6741C308.967 24.4237 309.739 22.4822 310.71 20.8495C311.725 19.2168 312.872 17.8489 314.151 16.7458C315.431 15.6426 316.799 14.8263 318.255 14.2968C319.711 13.7673 321.168 13.5025 322.624 13.5025C324.256 13.5025 325.823 13.8335 327.323 14.4954C328.867 15.1131 330.235 16.0839 331.427 17.4077C332.618 18.6873 333.567 20.2759 334.273 22.1733C334.979 24.0707 335.332 26.277 335.332 28.7922V44.3465Z" fill="white"/>
+  <path d="M373.586 40.1766V46.7293C372.483 47.3912 371.402 47.9428 370.343 48.3841C369.284 48.8253 368.203 49.1783 367.099 49.4431C366.04 49.7078 364.915 49.8843 363.724 49.9726C362.577 50.105 361.341 50.1712 360.017 50.1712C357.767 50.1712 355.605 49.752 353.531 48.9136C351.457 48.0311 349.626 46.7955 348.037 45.207C346.493 43.6185 345.235 41.699 344.264 39.4486C343.338 37.1981 342.874 34.6609 342.874 31.8368C342.874 29.3217 343.271 26.9609 344.066 24.7546C344.86 22.5042 345.941 20.5627 347.309 18.93C348.721 17.2532 350.376 15.9295 352.273 14.9587C354.215 13.9879 356.311 13.5025 358.561 13.5025C360.856 13.5025 362.974 13.9217 364.915 14.7601C366.901 15.5985 368.6 16.7899 370.012 18.3343C371.468 19.8346 372.593 21.6658 373.387 23.828C374.226 25.946 374.645 28.3068 374.645 30.9102L369.747 30.844H347.772C347.728 31.0646 347.706 31.3956 347.706 31.8368C347.706 34.1755 347.971 36.3818 348.5 38.4557C349.074 40.5297 349.912 42.3609 351.016 43.9494C352.119 45.4938 353.465 46.7293 355.053 47.656C356.642 48.5385 358.473 48.9798 360.547 48.9798C363.591 48.9798 366.217 48.1855 368.423 46.597C370.63 44.9643 372.24 42.8242 373.255 40.1766H373.586ZM358.561 14.7601C355.605 14.7601 353.134 16.0398 351.148 18.5991C349.206 21.1143 348.081 24.7988 347.772 29.6526H366.438C367.585 29.6526 368.423 29.432 368.953 28.9907C369.482 28.5495 369.637 27.689 369.416 26.4094C368.798 22.4822 367.475 19.5698 365.445 17.6724C363.459 15.7309 361.165 14.7601 358.561 14.7601Z" fill="white"/>
+  <path d="M415.846 44.3465C415.846 46.2881 416.133 47.5677 416.707 48.1855C417.324 48.7591 418.405 49.046 419.95 49.046V49.2445H411.345V40.64C410.154 43.5523 408.323 45.913 405.852 47.7222C403.425 49.4872 400.336 50.3697 396.585 50.3697C393.893 50.3697 391.511 49.8843 389.437 48.9136C387.407 47.9428 385.708 46.6411 384.34 45.0084C383.016 43.3316 382.001 41.368 381.295 39.1176C380.634 36.8672 380.303 34.4844 380.303 31.9692C380.303 29.454 380.634 27.0933 381.295 24.887C382.001 22.6366 383.038 20.6951 384.406 19.0624C385.774 17.3856 387.473 16.0618 389.503 15.0911C391.533 14.1203 393.893 13.6349 396.585 13.6349C400.424 13.6349 403.557 14.5836 405.984 16.481C408.411 18.3343 410.198 20.7171 411.345 23.6294V4.83179C411.301 2.93437 410.97 1.69885 410.352 1.12521C409.779 0.507445 408.72 0.198564 407.175 0.198564V0H415.846V44.3465ZM398.24 48.3841C400.093 48.3841 401.814 47.9649 403.403 47.1265C405.035 46.2881 406.425 45.1408 407.572 43.6847C408.764 42.2285 409.69 40.5076 410.352 38.5219C411.014 36.4921 411.345 34.3079 411.345 31.9692C411.345 29.6306 411.014 27.4684 410.352 25.4827C409.735 23.4529 408.852 21.71 407.705 20.2538C406.558 18.7976 405.168 17.6504 403.535 16.812C401.946 15.9736 400.181 15.5544 398.24 15.5544C396.166 15.5544 394.313 15.9736 392.68 16.812C391.091 17.6504 389.724 18.7976 388.576 20.2538C387.473 21.71 386.613 23.4529 385.995 25.4827C385.421 27.4684 385.134 29.6306 385.134 31.9692C385.134 34.3079 385.421 36.4921 385.995 38.5219C386.613 40.5076 387.473 42.2285 388.576 43.6847C389.724 45.1408 391.091 46.2881 392.68 47.1265C394.313 47.9649 396.166 48.3841 398.24 48.3841Z" fill="white"/>
+  <path d="M236.867 70.8645H247.949V72.2095H236.867V70.8645ZM237.042 81.2445H235.551V60.7769H249.235V62.1219H237.042V81.2445Z" fill="white"/>
+  <path d="M268.272 81.3907C266.752 81.3907 265.339 81.1373 264.033 80.6305C262.746 80.1042 261.615 79.3732 260.641 78.4375C259.686 77.4824 258.945 76.381 258.419 75.1335C257.892 73.8664 257.629 72.4922 257.629 71.0107C257.629 69.5292 257.892 68.1647 258.419 66.9172C258.945 65.6501 259.686 64.5488 260.641 63.6131C261.615 62.658 262.746 61.927 264.033 61.4202C265.339 60.8939 266.752 60.6307 268.272 60.6307C269.793 60.6307 271.196 60.8939 272.483 61.4202C273.789 61.927 274.919 62.6482 275.874 63.5839C276.83 64.5195 277.57 65.6209 278.097 66.8879C278.642 68.1355 278.915 69.5097 278.915 71.0107C278.915 72.5117 278.642 73.8957 278.097 75.1627C277.57 76.4102 276.83 77.5019 275.874 78.4375C274.919 79.3732 273.789 80.1042 272.483 80.6305C271.196 81.1373 269.793 81.3907 268.272 81.3907ZM268.272 80.0164C269.578 80.0164 270.787 79.7923 271.898 79.3439C273.009 78.8956 273.974 78.2621 274.793 77.4434C275.611 76.6247 276.245 75.6695 276.693 74.5779C277.161 73.4863 277.395 72.2972 277.395 71.0107C277.395 69.7047 277.161 68.5156 276.693 67.4435C276.245 66.3519 275.611 65.3967 274.793 64.578C273.974 63.7593 273.009 63.1258 271.898 62.6775C270.787 62.2291 269.578 62.005 268.272 62.005C266.966 62.005 265.758 62.2291 264.647 62.6775C263.535 63.1258 262.561 63.7593 261.723 64.578C260.904 65.3967 260.261 66.3519 259.793 67.4435C259.344 68.5156 259.12 69.7047 259.12 71.0107C259.12 72.2972 259.344 73.4863 259.793 74.5779C260.261 75.6695 260.904 76.6247 261.723 77.4434C262.561 78.2621 263.535 78.8956 264.647 79.3439C265.758 79.7923 266.966 80.0164 268.272 80.0164Z" fill="white"/>
+  <path d="M297.947 81.3907C295.413 81.3907 293.415 80.65 291.953 79.1685C290.491 77.687 289.76 75.4843 289.76 72.5604V60.7769H291.251V72.5019C291.251 75.0555 291.836 76.9463 293.006 78.1744C294.175 79.4024 295.832 80.0164 297.976 80.0164C300.101 80.0164 301.748 79.4024 302.918 78.1744C304.087 76.9463 304.672 75.0555 304.672 72.5019V60.7769H306.163V72.5604C306.163 75.4843 305.432 77.687 303.97 79.1685C302.508 80.65 300.501 81.3907 297.947 81.3907Z" fill="white"/>
+  <path d="M318.969 81.2445V60.7769H320.227L334.817 79.4024H334.145V60.7769H335.636V81.2445H334.408L319.788 62.619H320.46V81.2445H318.969Z" fill="white"/>
+  <path d="M348.631 81.2445V60.7769H356.731C358.894 60.7769 360.795 61.2155 362.432 62.0927C364.07 62.9699 365.337 64.1784 366.233 65.7184C367.15 67.2583 367.608 69.0224 367.608 71.0107C367.608 72.999 367.15 74.7631 366.233 76.303C365.337 77.843 364.07 79.0515 362.432 79.9287C360.795 80.8059 358.894 81.2445 356.731 81.2445H348.631ZM350.122 79.8995H356.614C358.543 79.8995 360.22 79.5194 361.643 78.7591C363.066 77.9989 364.167 76.9561 364.947 75.6305C365.727 74.2855 366.116 72.7456 366.116 71.0107C366.116 69.2758 365.727 67.7456 364.947 66.4201C364.167 65.0751 363.066 64.0225 361.643 63.2623C360.22 62.502 358.543 62.1219 356.614 62.1219H350.122V79.8995Z" fill="white"/>
+  <path d="M379.952 70.192H391.033V71.5078H379.952V70.192ZM380.127 79.8995H392.759V81.2445H378.636V60.7769H392.32V62.1219H380.127V79.8995Z" fill="white"/>
+  <path d="M404.043 81.2445V60.7769H411.382C413.098 60.7769 414.57 61.0498 415.798 61.5956C417.026 62.1414 417.971 62.9309 418.634 63.964C419.297 64.9776 419.628 66.2154 419.628 67.6774C419.628 69.1004 419.297 70.3284 418.634 71.3616C417.971 72.3752 417.026 73.1647 415.798 73.73C414.57 74.2758 413.098 74.5487 411.382 74.5487H404.862L405.535 73.8469V81.2445H404.043ZM418.254 81.2445L412.932 73.8177H414.628L419.95 81.2445H418.254ZM405.535 73.9346L404.862 73.2329H411.382C413.585 73.2329 415.252 72.7456 416.382 71.7709C417.532 70.7963 418.108 69.4318 418.108 67.6774C418.108 65.9035 417.532 64.539 416.382 63.5839C415.252 62.6092 413.585 62.1219 411.382 62.1219H404.862L405.535 61.3909V73.9346Z" fill="white"/>
+  <path d="M24.1127 81.3697C22.0929 68.4381 13.0788 59.1475 0 57.4296C12.82 55.9167 22.3349 46.515 24.096 33.3697C26.4163 46.5407 35.0464 55.6005 48 57.4039C35.5138 59.3185 26.4079 68.0535 24.121 81.3612L24.1127 81.3697Z" fill="white"/>
+  </svg></a>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#partnership">Partnership</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="#leadmagnet" class="nav-pill">Free Scorecard</a>
+    <div class="nav-burger" onclick="openMobile()"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="hero-inner">
+    <span class="hero-tag">AI Architecture &nbsp;·&nbsp; UK Founder-Led Businesses</span>
+    <h1 class="hero-h1">
+      Your Business Works.<br>
+      But Only When <span class="accent">You</span> Do.
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">What would it mean if it could grow without you?<br>That is not a personal failing. It is a structural one. And it can be designed out.</p>
+    <div class="hero-actions">
+      <a href="#partnership" class="btn btn-rose">See If This Is Right for You</a>
+      <a href="#about" class="btn-ghost">Meet Mitali</a>
+    </div>
+  </div>
+  <div class="hero-foot">
+    <span class="hero-foot-label">Mitali Deypurkaystha &nbsp;·&nbsp; Certified AI Strategist</span>
+    <div class="hero-foot-line"></div>
+    <span class="hero-foot-label">London, UK</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">The Unburdened Founder Architecture™ <span>✦</span></span>
+    <span class="ticker-item">90-Day Bespoke Engagement <span>✦</span></span>
+    <span class="ticker-item">Human-First AI Strategy <span>✦</span></span>
+    <span class="ticker-item">Done With You · Done For You <span>✦</span></span>
+    <span class="ticker-item">Purpose-Led UK Founders <span>✦</span></span>
+    <span class="ticker-item">B Corps &amp; Social Enterprise <span>✦</span></span>
+    <span class="ticker-item">Regulated Financial Services <span>✦</span></span>
+    <span class="ticker-item">Milestone Guaranteed <span>✦</span></span>
+    <span class="ticker-item">The Unburdened Founder Architecture™ <span>✦</span></span>
+    <span class="ticker-item">90-Day Bespoke Engagement <span>✦</span></span>
+    <span class="ticker-item">Human-First AI Strategy <span>✦</span></span>
+    <span class="ticker-item">Done With You · Done For You <span>✦</span></span>
+    <span class="ticker-item">Purpose-Led UK Founders <span>✦</span></span>
+    <span class="ticker-item">B Corps &amp; Social Enterprise <span>✦</span></span>
+    <span class="ticker-item">Regulated Financial Services <span>✦</span></span>
+    <span class="ticker-item">Milestone Guaranteed <span>✦</span></span>
+  </div>
+</div>
+
+<!-- ═══ INTRO ═══ -->
+<section id="intro">
+  <div class="intro-noise"></div>
+  <div class="intro-inner">
+    <span class="intro-eyebrow">You Have Built Something Real</span>
+    <h2>A Business With Reputation, Relationships, and Results.</h2>
+    <p>But growth still runs through you. And deep down, you know what that means: the moment you step back, momentum slows.</p>
+    <p>Mitali Deypurkaystha helps UK-based, purpose-driven founders build bespoke AI architecture around their business so growth continues in impact and profit, without requiring their constant presence.</p>
+    <div class="intro-stats">
+      <div class="i-stat">
+        <div class="i-num">51<em>hrs</em></div>
+        <div class="i-label">UK small business owners work an average of 51 hours per week. Significantly more than anyone else in their business.</div>
+      </div>
+      <div class="i-stat">
+        <div class="i-num">1<em style="font-size:20px"> in 5</em></div>
+        <div class="i-label">Have not taken two consecutive days off in the last six months. Not because they chose not to. Because stepping away did not feel safe.</div>
+      </div>
+      <div class="i-stat">
+        <div class="i-num">27<em>%</em></div>
+        <div class="i-label">Businesses that automate their workflows report 27% higher revenue growth. The people inside those businesses reclaim an average of 3.6 hours every week.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CREDIBILITY ═══ -->
+<section id="credibility">
+  <div class="cred-inner">
+    <div class="cred-press-bar">
+      <span class="cred-press-label">As Featured In</span>
+      <div class="cred-press-line"></div>
+      <div class="cred-logos">
+        <span class="cred-logo">FT Adviser</span>
+        <span class="cred-logo">The Express</span>
+        <span class="cred-logo">The Mirror</span>
+        <span class="cred-logo">Daily Star</span>
+        <span class="cred-logo">Business Matters</span>
+        <span class="cred-logo">MoneyWeek</span>
+        <span class="cred-logo">National World</span>
+      </div>
+    </div>
+    <div class="cred-top-text">
+      <p class="cred-tagline">The Proof Is Already in the Room</p>
+      <p class="cred-sub">From Newcastle United Foundation to regulated financial services, purpose-led founders across the UK are building businesses that grow without them.</p>
+    </div>
+    <div class="cred-badges">
+      <div class="cred-badge">
+        <span class="cb-tag">Co-Creator</span>
+        <span class="cb-text">Human-First Responsible AI Pledge</span>
+      </div>
+      <div class="cred-badge">
+        <span class="cb-tag">Chair of the Board</span>
+        <span class="cb-text">Organisation of Responsible Businesses</span>
+      </div>
+      <div class="cred-badge">
+        <span class="cb-tag">Virgin Startup Funded</span>
+        <span class="cb-text">Backed by Virgin's startup accelerator programme</span>
+      </div>
+      <div class="cred-badge">
+        <span class="cb-tag">UK Press Pass Holder</span>
+        <span class="cb-text">Accredited UK press credentials</span>
+      </div>
+      <div class="cred-badge">
+        <span class="cb-tag">Award Winner</span>
+        <span class="cb-text">Digital and Creative Industry Champion, Good Small Business Awards</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section id="problem">
+  <div class="problem-slash"></div>
+  <!-- Full-bleed split quote — outside wrap -->
+  <div class="pq">
+      <!-- Quote centred -->
+      <div class="pq-text">
+        <span class="pq-mark">"</span>
+        <blockquote>You are not burned out.<br>You are <em>over-relied on.</em><br>There is a difference.</blockquote>
+      </div>
+  </div>
+  <div class="problem-wrap">
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="prob-n">01</div>
+        <h3>You Are Not the Bottleneck Because You Made Mistakes</h3>
+        <p>You are the bottleneck because you built something that works, and it works because of you. Your clients trust you. Relationships move because you are present. Opportunities progress because you are the one following up.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-n">02</div>
+        <h3>When You Step Away, Even Briefly, the Pipeline Slows</h3>
+        <p>Leads go cold. And that 2am anxiety is not about work ethic. It is about architecture. The longer growth depends on you, the heavier it gets.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-n">03</div>
+        <h3>That Is Not a Flaw in Your Leadership</h3>
+        <p>It is a gap in your structure. And the structure can be redesigned. The difference between being burned out and over-relied on is critical — one is personal, the other is structural.</p>
+      </div>
+      <div class="prob-card">
+        <div class="prob-n">04</div>
+        <h3>Independence Is Not a Luxury. It Can Be Designed.</h3>
+        <p>The architecture exists. The question is whether yours has been built yet. That is precisely what this work addresses — with precision, care, and no disruption to what already works.</p>
+      </div>
+    </div>
+  </div>
+  <div class="problem-slash-bot"></div>
+</section>
+
+<!-- ═══ DATA ═══ -->
+<section id="data">
+  <div class="data-wrap">
+    <div class="data-head">
+      <h2>This Is Not a Feeling.<br>It Is a Pattern.</h2>
+      <p>The research is consistent. So is the cost of leaving it unaddressed.</p>
+    </div>
+    <div class="data-cells">
+      <div class="d-cell">
+        <div class="d-num">51<sub>hrs</sub></div>
+        <div class="d-label">UK small business owners work an average of 51 hours per week. Significantly more than anyone else in their business.</div>
+      </div>
+      <div class="d-cell">
+        <div class="d-num">1<sub>in&nbsp;5</sub></div>
+        <div class="d-label">Have not taken two consecutive days off in the last six months. Not because they chose not to. Because stepping away did not feel safe.</div>
+      </div>
+      <div class="d-cell">
+        <div class="d-num">27<sub>%</sub></div>
+        <div class="d-label">Businesses that automate their workflows report 27% higher revenue growth. And the people inside reclaim an average of 3.6 hours every week.</div>
+      </div>
+    </div>
+    <p class="data-footnote">The architecture exists. The question is whether yours has been built yet.</p>
+  </div>
+</section>
+
+<!-- ═══ DIFFERENT ═══ -->
+<section id="different">
+  <div class="diff-inner">
+    <div class="diff-left">
+      <span class="diff-eyebrow">A Different Kind of AI Strategist</span>
+      <h2>Not Another AI Consultant. A Human-First Architect.</h2>
+      <p>Most AI consultants arrive with pre-built toolkits and a preference for speed over sensitivity. Mitali comes from a different world entirely.</p>
+      <p>With nearly a decade running a purpose-led publishing company, she developed the ability to translate complexity into clarity and shape transformation into something people can trust. She brings that same editorial precision to AI strategy.</p>
+      <p>She bridges ethics with outcomes. For B Corps, social enterprises, and regulated businesses, that distinction matters enormously. She does not hand you generic automations.</p>
+      <p>She builds bespoke infrastructure around your existing methods: your voice, your relationships, and your values.</p>
+      <div class="diff-blockquote">
+        <p>"We don't replace you. We remove the burden from you."</p>
+        <cite>— Mitali Deypurkaystha</cite>
+      </div>
+    </div>
+    <div class="diff-list">
+      <div class="diff-row">
+        <span class="diff-n"><div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></svg></div></span>
+        <div>
+          <h3>She Does Not Hand You Generic Automations</h3>
+          <p>She builds bespoke infrastructure around your existing methods: your voice, your relationships, and your values. The system amplifies what works. It never replaces it.</p>
+        </div>
+      </div>
+      <div class="diff-row">
+        <span class="diff-n"><div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 8l9 4 9-4M5 16c0 1.7 1.3 3 3 3s3-1.3 3-3-1.3-3-3-3-3 1.3-3 3zM13 16c0 1.7 1.3 3 3 3s3-1.3 3-3-1.3-3-3-3-3 1.3-3 3z"/></svg></div></span>
+        <div>
+          <h3>Ethics Bridged With Outcomes</h3>
+          <p>For B Corps, social enterprises, and regulated businesses, the distinction between responsible AI and reckless AI matters enormously. This work is built on that distinction.</p>
+        </div>
+      </div>
+      <div class="diff-row">
+        <span class="diff-n"><div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76zM16 8L2 22"/></svg></div></span>
+        <div>
+          <h3>Editorial Precision Applied to Strategy</h3>
+          <p>The ability to translate complexity into clarity — to shape transformation into something people can genuinely trust — is rare. It comes from a decade of doing exactly that.</p>
+        </div>
+      </div>
+      <div class="diff-row">
+        <span class="diff-n"><div class="diff-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div></span>
+        <div>
+          <h3>Built Around What Already Works</h3>
+          <p>Nothing is torn down. Your proven methods, your existing relationships, your preferred way of selling — the architecture is designed around them, not the other way around.</p>
+        </div>
+      </div>
+      <div class="diff-row">
+        <span class="diff-n"><div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></span>
+        <div>
+          <h3>Human Stakes Taken Seriously</h3>
+          <p>AI is never just tools here. The human impact on every person inside a business being transformed is treated with the same rigour as any technical specification.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTION ═══ -->
+<section id="solution">
+  <div class="sol-wrap">
+    <div class="sol-head">
+      <span class="sol-eyebrow">The Unburdened Founder Architecture™</span>
+      <h2>A Rigorous, 3-Phase Methodology Built Around Your Business</h2>
+      <p class="sol-philosophy">The Gateshead Millennium Bridge does not stand still. It tilts, rebalances, and moves with precision, without ever losing its structural integrity. That is the philosophy behind every system Mitali builds. Intelligent load redistribution. Safe, elegant transition. Growth that holds, even when you step back.</p>
+    </div>
+
+    <!-- Bridge architecture image -->
+    <div class="sol-bridge-img">
+      <img src="Unburdened_Founder_Architecture.png" alt="The Unburdened Founder Architecture — showing Founder Friction, Founder Flow, and Founder Freedom as three phases of the bridge" />
+    </div>
+
+    <!-- Alternating spine layout -->
+    <div class="sol-track">
+
+      <div class="sol-row">
+        <div class="sol-content">
+          <span class="sol-phase-label">Phase 1 &nbsp;·&nbsp; Diagnose the dependency</span>
+          <h3>Founder Friction</h3>
+          <p>Every touchpoint where revenue or momentum still depends on your personal involvement is mapped and examined. No guesswork. Just precise, actionable clarity on exactly where the bottleneck lives.</p>
+          <ul class="s-list">
+            <li>Full dependency mapping</li>
+            <li>Revenue bottleneck analysis</li>
+            <li>Relationship touchpoint audit</li>
+            <li>Structural gap identification</li>
+            <li>Decision-grade clarity report</li>
+          </ul>
+        </div>
+        <div class="sol-num-col"><div class="sol-num">01</div><div class="sol-node"></div></div>
+        <div class="sol-empty"></div>
+      </div>
+
+      <div class="sol-row">
+        <div class="sol-empty"></div>
+        <div class="sol-num-col"><div class="sol-num">02</div><div class="sol-node"></div></div>
+        <div class="sol-content">
+          <span class="sol-phase-label">Phase 2 &nbsp;·&nbsp; Build around what already works</span>
+          <h3>Founder Flow</h3>
+          <p>Bespoke AI infrastructure is designed around your existing, proven methods: your voice, your relationships, your preferred way of selling. The system amplifies what works. It never replaces it.</p>
+          <ul class="s-list">
+            <li>Bespoke system architecture</li>
+            <li>Voice and method preservation</li>
+            <li>Custom workflow design</li>
+            <li>Live implementation support</li>
+            <li>Real-lead testing and iteration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sol-row">
+        <div class="sol-content">
+          <span class="sol-phase-label">Phase 3 &nbsp;·&nbsp; Step back on evidence, not faith</span>
+          <h3>Founder Freedom</h3>
+          <p>The system is tested with real leads and adjusted based on how your prospects actually respond. You do not step back hoping it holds. You step back knowing it does.</p>
+          <ul class="s-list">
+            <li>Controlled absence stress test</li>
+            <li>Live system validation</li>
+            <li>Holiday-safe sales protocol</li>
+            <li>Milestone sign-off framework</li>
+            <li>Founder independence achieved</li>
+          </ul>
+        </div>
+        <div class="sol-num-col"><div class="sol-num">03</div><div class="sol-node"></div></div>
+        <div class="sol-empty"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARTNERSHIP ═══ -->
+<section id="partnership">
+  <div class="part-wrap">
+    <div class="part-head">
+      <h2>The Unburdened<br>Founder Partnership</h2>
+      <div>
+        <p>A 90-day, one-to-one engagement. Done with you. Done for you.</p>
+        <p>This is not a course. It is not a set of templates or a generic automation package. The Unburdened Founder Partnership is a hands-on, bespoke engagement where Mitali stays closely involved in the actual execution from day one to day ninety.</p>
+      </div>
+    </div>
+    <div class="part-cards">
+      <div class="pc">
+        <div class="pc-num">Phase 01</div>
+        <h3>Diagnostic and Decision-Grade Clarity</h3>
+        <p>A deep analysis of how you currently generate leads, what you genuinely enjoy doing, and exactly where you are the structural bottleneck. This phase ends with a strict go/no-go decision. If a safe, functioning system cannot be built around your business, the work pauses and is reassessed before continuing. You are never pushed forward without clarity.</p>
+        <ul>
+          <li>Lead generation audit</li>
+          <li>Structural dependency mapping</li>
+          <li>Strict go/no-go decision framework</li>
+          <li>Decision-grade clarity report</li>
+          <li>You are never pushed forward without clarity</li>
+        </ul>
+        <a href="#leadmagnet">Apply Now →</a>
+      </div>
+      <div class="pc">
+        <div class="pc-num">Phase 02</div>
+        <h3>Bespoke System Design and Live Implementation</h3>
+        <p>Custom workflow design built around your preferred methods of selling, not preset channels. Hands-on technical setup of AI and automation to handle follow-up, lead qualification, and pipeline visibility. The system is tested with real leads and adjusted based on how your prospects actually respond.</p>
+        <ul>
+          <li>Bespoke system architecture</li>
+          <li>AI and automation setup</li>
+          <li>Live testing with real leads</li>
+          <li>Ethical AI guardrails embedded throughout</li>
+          <li>Human-in-the-loop safeguards defined</li>
+        </ul>
+        <a href="#leadmagnet">Apply Now →</a>
+      </div>
+      <div class="pc">
+        <div class="pc-num">Phase 03</div>
+        <h3>Freedom, Safeguards &amp; Guarantees</h3>
+        <p>Every meaningful interaction is automatically tracked and progressed. No qualified lead ever relies on your memory or manual chasing. If the 30, 60, or 90-day milestones are not delivered as defined, work continues at no additional cost until they are. You are never left with a half-built system.</p>
+        <ul>
+          <li>✦ Bonus: Founder Absence Stress Test — a deliberately planned 2 to 3-day window where the system runs entirely without you</li>
+          <li>✦ Bonus: Holiday-Safe Sales Protocol — follow-ups continue, visibility remains, no backlog on return</li>
+          <li>Full milestone guarantee</li>
+          <li>Controlled step-back on evidence</li>
+        </ul>
+        <a href="#leadmagnet">Apply Now →</a>
+      </div>
+    </div>
+    <div class="part-cta">
+      <p>Mitali stays closely involved in the actual execution from day one to day ninety.</p>
+      <a href="#leadmagnet" class="btn btn-rose">Apply for the Unburdened Founder Partnership</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TIMELINE ═══ -->
+<section id="timeline">
+  <div class="tl-wrap">
+    <div class="tl-head">
+      <span class="tl-eyebrow">The Transformation Timeline</span>
+      <h2>What the 90 Days Feels Like</h2>
+      <p>This is not a project you manage from a distance. Here is what founders experience at each stage.</p>
+    </div>
+    <div class="tl-steps">
+      <div class="tl-step">
+        <div class="tl-dot"></div>
+        <div class="tl-day">Day 30</div>
+        <h3>The Guesswork Is Gone</h3>
+        <p>You know exactly what is being systemised, what is not, and why. A live lead-handling system is already running. For the first time, you can see the structure underneath your growth.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot"></div>
+        <div class="tl-day">Day 60</div>
+        <h3>You Stop Chasing</h3>
+        <p>Follow-up is no longer living in your head. Opportunities are progressing without your involvement, and the cognitive load you have been carrying quietly starts to lift.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot"></div>
+        <div class="tl-day">Day 90</div>
+        <h3>You Step Away. On Evidence.</h3>
+        <p>Not on hope. The system holds. Leads continue. Momentum does not stall. This is what the end of structural dependence feels like.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="test-outer">
+    <div class="test-left">
+      <div>
+        <span class="test-eyebrow">Voices of Independence</span>
+        <h2>They had the same questions you do.</h2>
+        <p>Here is what they found.</p>
+      </div>
+      <div>
+        <div class="test-arrows">
+          <button class="test-arrow" id="testPrev" aria-label="Previous">&#8592;</button>
+          <button class="test-arrow" id="testNext" aria-label="Next">&#8594;</button>
+        </div>
+        <div class="test-dots" id="testDots">
+          <div class="test-dot active"></div>
+          <div class="test-dot"></div>
+          <div class="test-dot"></div>
+        </div>
+      </div>
+    </div>
+    <div class="test-right">
+      <div class="test-slides" id="testSlides">
+        <div class="test-slide active">
+          <span class="test-quote-mark">"</span>
+          <blockquote>Mitali helped nudge the culture toward a better understanding of how AI can be useful in our people's roles, demystifying the fear that robots are taking over!</blockquote>
+          <div class="test-divider"></div>
+          <div class="test-attribution">
+            <div class="test-avatar">SB</div>
+            <div>
+              <div class="test-stars"><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span></div>
+              <div class="test-name">Steve Beharall <span>, CEO</span></div>
+              <div class="test-name"><span>Newcastle United Foundation</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="test-slide">
+          <span class="test-quote-mark">"</span>
+          <blockquote>Mitali removed all the second-guessing around AI, particularly helpful given the regulated nature of the financial advice sector.</blockquote>
+          <div class="test-divider"></div>
+          <div class="test-attribution">
+            <div class="test-avatar">JS</div>
+            <div>
+              <div class="test-stars"><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span></div>
+              <div class="test-name">Jai Street <span>, Founder</span></div>
+              <div class="test-name"><span>Mindful Wealth</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="test-slide">
+          <span class="test-quote-mark">"</span>
+          <blockquote>Mitali has given us the confidence to take the next step on our growth journey for AG Impact.</blockquote>
+          <div class="test-divider"></div>
+          <div class="test-attribution">
+            <div class="test-avatar">LA</div>
+            <div>
+              <div class="test-stars"><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span><span class="test-star">✦</span></div>
+              <div class="test-name">Lucy Atkinson <span>, Executive Director</span></div>
+              <div class="test-name"><span>AG Impact</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photo">
+      <!-- Graphic placeholder with SVG pattern -->
+      <svg class="about-svg-bg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="500" height="700" fill="#4E6254"/>
+        <circle cx="250" cy="200" r="180" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <circle cx="250" cy="200" r="120" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <circle cx="250" cy="200" r="60" fill="none" stroke="rgba(169,104,114,0.2)" stroke-width="1"/>
+        <text x="250" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="80" fill="rgba(255,255,255,0.06)" letter-spacing="-4">MD</text>
+        <rect x="60" y="460" width="380" height="1" fill="rgba(169,104,114,0.3)"/>
+        <text x="250" y="490" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="rgba(255,255,255,0.35)" letter-spacing="3">PHOTO PLACEHOLDER</text>
+        <!-- Decorative corner marks -->
+        <path d="M 40 40 L 40 80 M 40 40 L 80 40" stroke="rgba(169,104,114,0.4)" stroke-width="1.5" fill="none"/>
+        <path d="M 460 40 L 460 80 M 460 40 L 420 40" stroke="rgba(169,104,114,0.4)" stroke-width="1.5" fill="none"/>
+        <path d="M 40 660 L 40 620 M 40 660 L 80 660" stroke="rgba(169,104,114,0.4)" stroke-width="1.5" fill="none"/>
+        <path d="M 460 660 L 460 620 M 460 660 L 420 660" stroke="rgba(169,104,114,0.4)" stroke-width="1.5" fill="none"/>
+      </svg>
+      <div class="about-badge">
+        <p>"The business worked. But only when I did."</p>
+        <cite>— Mitali Deypurkaystha</cite>
+      </div>
+    </div>
+    <div class="about-content">
+      <span class="about-eyebrow">About Mitali</span>
+      <h2>The Burden She Refused to Keep Carrying</h2>
+      <p>Mitali built a successful founder-led business. Operations were delegated. But growth could not be handed off. Clients came because of her. Relationships moved because she was present.</p>
+      <p>Then, on New Year's Day 2023, her mother collapsed unexpectedly. Mitali stepped away for two weeks. Operations continued. Growth did not.</p>
+      <p>When that quarter closed, profits had dipped. Not because demand had disappeared. Because she had stepped away.</p>
+      <p>The realisation was quiet and absolute: the business worked. But only when she did.</p>
+      <p>She spent the next year becoming a certified AI strategist, determined to design the solution she once needed. Not to automate connection. To protect it.</p>
+      <p>What drives her runs deeper still. In her late teens, Mitali experienced homelessness and overcame substance abuse. She knows how fragile human connection is, and how transformative it becomes when it is restored. That is why she never treats AI as just tools. She sees the human stakes in every business she transforms, and she protects them.</p>
+      <div class="about-tags">
+        <span class="a-tag">Certified AI Strategist</span>
+        <span class="a-tag">Human-First AI</span>
+        <span class="a-tag">Purpose-Led Founders</span>
+        <span class="a-tag">Responsible AI</span>
+        <span class="a-tag">B Corps</span>
+        <span class="a-tag">Regulated Businesses</span>
+      </div>
+      <a href="#partnership" class="btn btn-dark" style="display:inline-block;margin-top:28px">I Am Ready to Step Back</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEAD MAGNET ═══ -->
+<section id="leadmagnet">
+  <div class="lm-geo"></div>
+  <div class="lm-geo2"></div>
+  <div class="lm-inner">
+    <div class="lm-left">
+      <span class="lm-eyebrow">Not Ready for the Full Partnership?</span>
+      <h2>Start with the <em>Unburdened Founder Map</em></h2>
+      <p>A free scorecard showing UK-based, purpose-led founders exactly where AI and automation can remove their daily grind and restore their time and focus. Takes minutes. Gives you immediate clarity on where structural dependence is costing you most.</p>
+      <p>No obligation. Just clarity.</p>
+      <ul class="lm-list">
+        <li>Pinpoint exactly where growth depends on your personal presence</li>
+        <li>Identify which parts of your business are ready for AI architecture now</li>
+        <li>Understand where automation would amplify — not replace — your relationships</li>
+        <li>Immediate clarity. No obligation to go further.</li>
+      </ul>
+      <a href="#" class="btn btn-dark" style="display:inline-block;margin-top:8px">Show Me Where the Burden Lives</a>
+    </div>
+    <div class="lm-form">
+      <h3>Show Me Where<br>the Burden Lives</h3>
+      <span class="lm-subtitle">Free. Immediate. No obligation.</span>
+      <div class="fg">
+        <label>First Name</label>
+        <input type="text" placeholder="Your first name">
+      </div>
+      <div class="fg">
+        <label>Business Email</label>
+        <input type="email" placeholder="you@yourbusiness.com">
+      </div>
+      <div class="fg">
+        <label>Your Business</label>
+        <input type="text" placeholder="Founder at...">
+      </div>
+      <button class="form-btn">Show Me Where the Burden Lives</button>
+      <p class="form-priv">Your details are held in accordance with GDPR. Unsubscribe at any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo"><svg width="200" height="39" viewBox="0 0 420 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M64.5621 19.5257V44.4127C64.5621 46.3543 64.8489 47.6339 65.4225 48.2517C66.0403 48.8253 67.1214 49.1121 68.6658 49.1121V49.3107H60.0612V37.1981C59.4876 39.4044 58.6933 41.346 57.6784 43.0228C56.7076 44.6554 55.5824 46.0233 54.3028 47.1265C53.0231 48.1855 51.6552 48.9798 50.1991 49.5093C48.7429 50.0829 47.2868 50.3697 45.8306 50.3697C44.1979 50.3697 42.6094 50.0388 41.065 49.3769C39.5647 48.715 38.2189 47.7442 37.0275 46.4646C35.8361 45.1849 34.8874 43.5964 34.1814 41.699C33.4753 39.7574 33.1223 37.5291 33.1223 35.0139V19.4595C33.1223 17.5621 32.8135 16.3266 32.1957 15.753C31.6221 15.1352 30.563 14.8263 29.0186 14.8263V14.6277H41.7931V14.8263C40.2487 14.8263 39.1676 15.1352 38.5498 15.753C37.9762 16.3266 37.6673 17.5621 37.6232 19.4595V35.0139C37.6232 37.132 37.91 39.0073 38.4836 40.64C39.0573 42.2285 39.8074 43.5743 40.7341 44.6775C41.6607 45.7806 42.7197 46.619 43.9111 47.1927C45.1467 47.7222 46.4042 47.9869 47.6839 47.9869C49.1842 47.9869 50.6624 47.6119 52.1185 46.8617C53.6188 46.1116 54.9426 44.9864 56.0899 43.4861C57.2813 41.9858 58.23 40.0884 58.936 37.7938C59.6861 35.4552 60.0612 32.7414 60.0612 29.6526V19.3933C60.0171 17.5401 59.6861 16.3266 59.0684 15.753C58.4947 15.1352 57.4357 14.8263 55.8913 14.8263V14.6277H68.6658V14.8263C67.1214 14.8263 66.0403 15.1352 65.4225 15.753C64.8489 16.3266 64.5621 17.5842 64.5621 19.5257Z" fill="white"/>
+<path d="M106.967 44.3465C106.967 46.2881 107.254 47.5677 107.828 48.1855C108.446 48.7591 109.527 49.046 111.071 49.046V49.2445H98.2967V49.046C99.8411 49.046 100.922 48.7591 101.54 48.1855C102.158 47.5677 102.467 46.2881 102.467 44.3465V28.7922C102.467 26.6741 102.18 24.8208 101.606 23.2323C101.032 21.5996 100.282 20.2538 99.3557 19.1948C98.429 18.0916 97.348 17.2753 96.1124 16.7458C94.921 16.1721 93.6855 15.8853 92.4059 15.8853C90.9056 15.8853 89.4053 16.2604 87.905 17.0105C86.4489 17.7166 85.1251 18.8418 83.9337 20.3862C82.7864 21.8865 81.8377 23.7839 81.0876 26.0784C80.3815 28.3288 80.0285 31.0205 80.0285 34.1535V44.4127C80.0727 46.3101 80.3815 47.5677 80.9552 48.1855C81.5729 48.7591 82.654 49.046 84.1984 49.046V49.2445H71.424V49.046C72.9684 49.046 74.0274 48.7591 74.601 48.1855C75.2188 47.5677 75.5277 46.2881 75.5277 44.3465V19.3933C75.5277 18.4226 75.4615 17.6504 75.3291 17.0767C75.1967 16.459 74.9541 15.9956 74.601 15.6868C74.2922 15.3338 73.873 15.0911 73.3435 14.9587C72.8139 14.8263 72.1741 14.7601 71.424 14.7601V14.4954H80.0285V26.6741C80.6022 24.4237 81.3744 22.4822 82.3451 20.8495C83.36 19.2168 84.5073 17.8489 85.787 16.7458C87.0666 15.6426 88.4345 14.8263 89.8907 14.2968C91.3468 13.7673 92.803 13.5025 94.2591 13.5025C95.8918 13.5025 97.4583 13.8335 98.9585 14.4954C100.503 15.1131 101.871 16.0839 103.062 17.4077C104.254 18.6873 105.202 20.2759 105.908 22.1733C106.614 24.0707 106.967 26.277 106.967 28.7922V44.3465Z" fill="white"/>
+<path d="M132.303 13.6349C134.994 13.6349 137.355 14.1203 139.385 15.0911C141.415 16.0618 143.114 17.3856 144.482 19.0624C145.849 20.6951 146.864 22.6366 147.526 24.887C148.232 27.0933 148.585 29.454 148.585 31.9692C148.585 34.4844 148.166 36.8672 147.328 39.1176C146.489 41.368 145.298 43.3316 143.753 45.0084C142.209 46.6411 140.334 47.9428 138.127 48.9136C135.965 49.8843 133.538 50.3697 130.847 50.3697C128.376 50.3697 126.059 49.8843 123.897 48.9136C121.735 47.9428 119.837 46.6852 118.205 45.1408C116.616 43.5964 115.358 41.8976 114.432 40.0443C113.505 38.1469 113.042 36.2715 113.042 34.4182V4.89798C113.042 2.95644 112.733 1.69885 112.115 1.12521C111.542 0.507445 110.482 0.198564 108.938 0.198564V0H117.543V23.6294C118.69 20.7171 120.477 18.3343 122.904 16.481C125.331 14.5836 128.464 13.6349 132.303 13.6349ZM130.648 48.3841C132.722 48.3841 134.553 47.9649 136.142 47.1265C137.774 46.2881 139.142 45.1408 140.245 43.6847C141.393 42.2285 142.253 40.5076 142.827 38.5219C143.445 36.4921 143.753 34.3079 143.753 31.9692C143.753 29.6306 143.445 27.4684 142.827 25.4827C142.253 23.4529 141.393 21.71 140.245 20.2538C139.142 18.7976 137.774 17.6504 136.142 16.812C134.553 15.9736 132.722 15.5544 130.648 15.5544C128.706 15.5544 126.919 15.9736 125.287 16.812C123.698 17.6504 122.33 18.7976 121.183 20.2538C120.036 21.71 119.131 23.4529 118.469 25.4827C117.852 27.4684 117.543 29.6306 117.543 31.9692C117.543 34.3079 117.874 36.4921 118.535 38.5219C119.197 40.5076 120.102 42.2285 121.249 43.6847C122.441 45.1408 123.831 46.2881 125.419 47.1265C127.052 47.9649 128.795 48.3841 130.648 48.3841Z" fill="white"/>
+<path d="M187.761 19.5257V44.4127C187.761 46.3543 188.048 47.6339 188.622 48.2517C189.239 48.8253 190.321 49.1121 191.865 49.1121V49.3107H183.26V37.1981C182.687 39.4044 181.893 41.346 180.878 43.0228C179.907 44.6554 178.782 46.0233 177.502 47.1265C176.222 48.1855 174.854 48.9798 173.398 49.5093C171.942 50.0829 170.486 50.3697 169.03 50.3697C167.397 50.3697 165.809 50.0388 164.264 49.3769C162.764 48.715 161.418 47.7442 160.227 46.4646C159.035 45.1849 158.087 43.5964 157.381 41.699C156.675 39.7574 156.322 37.5291 156.322 35.0139V19.4595C156.322 17.5621 156.013 16.3266 155.395 15.753C154.821 15.1352 153.762 14.8263 152.218 14.8263V14.6277H164.992V14.8263C163.448 14.8263 162.367 15.1352 161.749 15.753C161.175 16.3266 160.867 17.5621 160.822 19.4595V35.0139C160.822 37.132 161.109 39.0073 161.683 40.64C162.256 42.2285 163.007 43.5743 163.933 44.6775C164.86 45.7806 165.919 46.619 167.11 47.1927C168.346 47.7222 169.603 47.9869 170.883 47.9869C172.383 47.9869 173.862 47.6119 175.318 46.8617C176.818 46.1116 178.142 44.9864 179.289 43.4861C180.48 41.9858 181.429 40.0884 182.135 37.7938C182.885 35.4552 183.26 32.7414 183.26 29.6526V19.3933C183.216 17.5401 182.885 16.3266 182.268 15.753C181.694 15.1352 180.635 14.8263 179.091 14.8263V14.6277H191.865V14.8263C190.321 14.8263 189.239 15.1352 188.622 15.753C188.048 16.3266 187.761 17.5842 187.761 19.5257Z" fill="white"/>
+<path d="M203.823 26.7403C204.441 24.3575 205.302 22.3057 206.405 20.5847C207.508 18.8197 208.766 17.4077 210.178 16.3487C211.59 15.2455 213.09 14.4733 214.678 14.032C216.267 13.5908 217.855 13.4584 219.444 13.6349V17.5401H219.378C218.098 17.187 216.907 17.0105 215.804 17.0105C214.259 17.0105 212.759 17.3415 211.303 18.0034C209.847 18.6211 208.567 19.636 207.464 21.0481C206.361 22.416 205.478 24.181 204.816 26.3432C204.154 28.5053 203.823 31.1308 203.823 34.2196V44.4789C203.868 46.3763 204.176 47.6339 204.75 48.2517C205.368 48.8253 206.449 49.1121 207.993 49.1121V49.3107H195.219V49.1121C196.763 49.1121 197.822 48.8253 198.396 48.2517C199.014 47.6339 199.323 46.3543 199.323 44.4127V19.5257C199.323 17.5842 199.014 16.3266 198.396 15.753C197.822 15.1352 196.763 14.8263 195.219 14.8263V14.6277H203.823V26.7403Z" fill="white"/>
+<path d="M256.321 44.3465C256.321 46.2881 256.607 47.5677 257.181 48.1855C257.799 48.7591 258.88 49.046 260.424 49.046V49.2445H251.82V40.64C250.628 43.5523 248.797 45.913 246.326 47.7222C243.899 49.4872 240.81 50.3697 237.06 50.3697C234.368 50.3697 231.985 49.8843 229.911 48.9136C227.881 47.9428 226.183 46.6411 224.815 45.0084C223.491 43.3316 222.476 41.368 221.77 39.1176C221.108 36.8672 220.777 34.4844 220.777 31.9692C220.777 29.454 221.108 27.0933 221.77 24.887C222.476 22.6366 223.513 20.6951 224.881 19.0624C226.249 17.3856 227.948 16.0618 229.977 15.0911C232.007 14.1203 234.368 13.6349 237.06 13.6349C240.899 13.6349 244.031 14.5836 246.458 16.481C248.885 18.3343 250.672 20.7171 251.82 23.6294V4.83179C251.776 2.93437 251.445 1.69885 250.827 1.12521C250.253 0.507445 249.194 0.198564 247.65 0.198564V0H256.321V44.3465ZM238.714 48.3841C240.568 48.3841 242.288 47.9649 243.877 47.1265C245.51 46.2881 246.9 45.1408 248.047 43.6847C249.238 42.2285 250.165 40.5076 250.827 38.5219C251.489 36.4921 251.82 34.3079 251.82 31.9692C251.82 29.6306 251.489 27.4684 250.827 25.4827C250.209 23.4529 249.327 21.71 248.179 20.2538C247.032 18.7976 245.642 17.6504 244.009 16.812C242.421 15.9736 240.656 15.5544 238.714 15.5544C236.64 15.5544 234.787 15.9736 233.154 16.812C231.566 17.6504 230.198 18.7976 229.051 20.2538C227.948 21.71 227.087 23.4529 226.469 25.4827C225.896 27.4684 225.609 29.6306 225.609 31.9692C225.609 34.3079 225.896 36.4921 226.469 38.5219C227.087 40.5076 227.948 42.2285 229.051 43.6847C230.198 45.1408 231.566 46.2881 233.154 47.1265C234.787 47.9649 236.64 48.3841 238.714 48.3841Z" fill="white"/>
+<path d="M294.793 40.1766V46.7293C293.69 47.3912 292.609 47.9428 291.55 48.3841C290.491 48.8253 289.409 49.1783 288.306 49.4431C287.247 49.7078 286.122 49.8843 284.931 49.9726C283.783 50.105 282.548 50.1712 281.224 50.1712C278.974 50.1712 276.811 49.752 274.738 48.9136C272.664 48.0311 270.832 46.7955 269.244 45.207C267.699 43.6185 266.442 41.699 265.471 39.4486C264.544 37.1981 264.081 34.6609 264.081 31.8368C264.081 29.3217 264.478 26.9609 265.273 24.7546C266.067 22.5042 267.148 20.5627 268.516 18.93C269.928 17.2532 271.583 15.9295 273.48 14.9587C275.422 13.9879 277.517 13.5025 279.768 13.5025C282.062 13.5025 284.18 13.9217 286.122 14.7601C288.108 15.5985 289.807 16.7899 291.219 18.3343C292.675 19.8346 293.8 21.6658 294.594 23.828C295.433 25.946 295.852 28.3068 295.852 30.9102L290.954 30.844H268.979C268.935 31.0646 268.913 31.3956 268.913 31.8368C268.913 34.1755 269.178 36.3818 269.707 38.4557C270.281 40.5297 271.119 42.3609 272.222 43.9494C273.326 45.4938 274.671 46.7293 276.26 47.656C277.848 48.5385 279.68 48.9798 281.754 48.9798C284.798 48.9798 287.424 48.1855 289.63 46.597C291.836 44.9643 293.447 42.8242 294.462 40.1766H294.793ZM279.768 14.7601C276.811 14.7601 274.34 16.0398 272.355 18.5991C270.413 21.1143 269.288 24.7988 268.979 29.6526H287.644C288.792 29.6526 289.63 29.432 290.16 28.9907C290.689 28.5495 290.844 27.689 290.623 26.4094C290.005 22.4822 288.681 19.5698 286.652 17.6724C284.666 15.7309 282.371 14.7601 279.768 14.7601Z" fill="white"/>
+<path d="M335.332 44.3465C335.332 46.2881 335.619 47.5677 336.192 48.1855C336.81 48.7591 337.891 49.046 339.436 49.046V49.2445H326.661V49.046C328.206 49.046 329.287 48.7591 329.904 48.1855C330.522 47.5677 330.831 46.2881 330.831 44.3465V28.7922C330.831 26.6741 330.544 24.8208 329.971 23.2323C329.397 21.5996 328.647 20.2538 327.72 19.1948C326.794 18.0916 325.712 17.2753 324.477 16.7458C323.286 16.1721 322.05 15.8853 320.77 15.8853C319.27 15.8853 317.77 16.2604 316.27 17.0105C314.813 17.7166 313.49 18.8418 312.298 20.3862C311.151 21.8865 310.202 23.7839 309.452 26.0784C308.746 28.3288 308.393 31.0205 308.393 34.1535V44.4127C308.437 46.3101 308.746 47.5677 309.32 48.1855C309.937 48.7591 311.019 49.046 312.563 49.046V49.2445H299.789V49.046C301.333 49.046 302.392 48.7591 302.966 48.1855C303.583 47.5677 303.892 46.2881 303.892 44.3465V19.3933C303.892 18.4226 303.826 17.6504 303.694 17.0767C303.561 16.459 303.319 15.9956 302.966 15.6868C302.657 15.3338 302.237 15.0911 301.708 14.9587C301.178 14.8263 300.539 14.7601 299.789 14.7601V14.4954H308.393V26.6741C308.967 24.4237 309.739 22.4822 310.71 20.8495C311.725 19.2168 312.872 17.8489 314.151 16.7458C315.431 15.6426 316.799 14.8263 318.255 14.2968C319.711 13.7673 321.168 13.5025 322.624 13.5025C324.256 13.5025 325.823 13.8335 327.323 14.4954C328.867 15.1131 330.235 16.0839 331.427 17.4077C332.618 18.6873 333.567 20.2759 334.273 22.1733C334.979 24.0707 335.332 26.277 335.332 28.7922V44.3465Z" fill="white"/>
+<path d="M373.586 40.1766V46.7293C372.483 47.3912 371.402 47.9428 370.343 48.3841C369.284 48.8253 368.203 49.1783 367.099 49.4431C366.04 49.7078 364.915 49.8843 363.724 49.9726C362.577 50.105 361.341 50.1712 360.017 50.1712C357.767 50.1712 355.605 49.752 353.531 48.9136C351.457 48.0311 349.626 46.7955 348.037 45.207C346.493 43.6185 345.235 41.699 344.264 39.4486C343.338 37.1981 342.874 34.6609 342.874 31.8368C342.874 29.3217 343.271 26.9609 344.066 24.7546C344.86 22.5042 345.941 20.5627 347.309 18.93C348.721 17.2532 350.376 15.9295 352.273 14.9587C354.215 13.9879 356.311 13.5025 358.561 13.5025C360.856 13.5025 362.974 13.9217 364.915 14.7601C366.901 15.5985 368.6 16.7899 370.012 18.3343C371.468 19.8346 372.593 21.6658 373.387 23.828C374.226 25.946 374.645 28.3068 374.645 30.9102L369.747 30.844H347.772C347.728 31.0646 347.706 31.3956 347.706 31.8368C347.706 34.1755 347.971 36.3818 348.5 38.4557C349.074 40.5297 349.912 42.3609 351.016 43.9494C352.119 45.4938 353.465 46.7293 355.053 47.656C356.642 48.5385 358.473 48.9798 360.547 48.9798C363.591 48.9798 366.217 48.1855 368.423 46.597C370.63 44.9643 372.24 42.8242 373.255 40.1766H373.586ZM358.561 14.7601C355.605 14.7601 353.134 16.0398 351.148 18.5991C349.206 21.1143 348.081 24.7988 347.772 29.6526H366.438C367.585 29.6526 368.423 29.432 368.953 28.9907C369.482 28.5495 369.637 27.689 369.416 26.4094C368.798 22.4822 367.475 19.5698 365.445 17.6724C363.459 15.7309 361.165 14.7601 358.561 14.7601Z" fill="white"/>
+<path d="M415.846 44.3465C415.846 46.2881 416.133 47.5677 416.707 48.1855C417.324 48.7591 418.405 49.046 419.95 49.046V49.2445H411.345V40.64C410.154 43.5523 408.323 45.913 405.852 47.7222C403.425 49.4872 400.336 50.3697 396.585 50.3697C393.893 50.3697 391.511 49.8843 389.437 48.9136C387.407 47.9428 385.708 46.6411 384.34 45.0084C383.016 43.3316 382.001 41.368 381.295 39.1176C380.634 36.8672 380.303 34.4844 380.303 31.9692C380.303 29.454 380.634 27.0933 381.295 24.887C382.001 22.6366 383.038 20.6951 384.406 19.0624C385.774 17.3856 387.473 16.0618 389.503 15.0911C391.533 14.1203 393.893 13.6349 396.585 13.6349C400.424 13.6349 403.557 14.5836 405.984 16.481C408.411 18.3343 410.198 20.7171 411.345 23.6294V4.83179C411.301 2.93437 410.97 1.69885 410.352 1.12521C409.779 0.507445 408.72 0.198564 407.175 0.198564V0H415.846V44.3465ZM398.24 48.3841C400.093 48.3841 401.814 47.9649 403.403 47.1265C405.035 46.2881 406.425 45.1408 407.572 43.6847C408.764 42.2285 409.69 40.5076 410.352 38.5219C411.014 36.4921 411.345 34.3079 411.345 31.9692C411.345 29.6306 411.014 27.4684 410.352 25.4827C409.735 23.4529 408.852 21.71 407.705 20.2538C406.558 18.7976 405.168 17.6504 403.535 16.812C401.946 15.9736 400.181 15.5544 398.24 15.5544C396.166 15.5544 394.313 15.9736 392.68 16.812C391.091 17.6504 389.724 18.7976 388.576 20.2538C387.473 21.71 386.613 23.4529 385.995 25.4827C385.421 27.4684 385.134 29.6306 385.134 31.9692C385.134 34.3079 385.421 36.4921 385.995 38.5219C386.613 40.5076 387.473 42.2285 388.576 43.6847C389.724 45.1408 391.091 46.2881 392.68 47.1265C394.313 47.9649 396.166 48.3841 398.24 48.3841Z" fill="white"/>
+<path d="M236.867 70.8645H247.949V72.2095H236.867V70.8645ZM237.042 81.2445H235.551V60.7769H249.235V62.1219H237.042V81.2445Z" fill="white"/>
+<path d="M268.272 81.3907C266.752 81.3907 265.339 81.1373 264.033 80.6305C262.746 80.1042 261.615 79.3732 260.641 78.4375C259.686 77.4824 258.945 76.381 258.419 75.1335C257.892 73.8664 257.629 72.4922 257.629 71.0107C257.629 69.5292 257.892 68.1647 258.419 66.9172C258.945 65.6501 259.686 64.5488 260.641 63.6131C261.615 62.658 262.746 61.927 264.033 61.4202C265.339 60.8939 266.752 60.6307 268.272 60.6307C269.793 60.6307 271.196 60.8939 272.483 61.4202C273.789 61.927 274.919 62.6482 275.874 63.5839C276.83 64.5195 277.57 65.6209 278.097 66.8879C278.642 68.1355 278.915 69.5097 278.915 71.0107C278.915 72.5117 278.642 73.8957 278.097 75.1627C277.57 76.4102 276.83 77.5019 275.874 78.4375C274.919 79.3732 273.789 80.1042 272.483 80.6305C271.196 81.1373 269.793 81.3907 268.272 81.3907ZM268.272 80.0164C269.578 80.0164 270.787 79.7923 271.898 79.3439C273.009 78.8956 273.974 78.2621 274.793 77.4434C275.611 76.6247 276.245 75.6695 276.693 74.5779C277.161 73.4863 277.395 72.2972 277.395 71.0107C277.395 69.7047 277.161 68.5156 276.693 67.4435C276.245 66.3519 275.611 65.3967 274.793 64.578C273.974 63.7593 273.009 63.1258 271.898 62.6775C270.787 62.2291 269.578 62.005 268.272 62.005C266.966 62.005 265.758 62.2291 264.647 62.6775C263.535 63.1258 262.561 63.7593 261.723 64.578C260.904 65.3967 260.261 66.3519 259.793 67.4435C259.344 68.5156 259.12 69.7047 259.12 71.0107C259.12 72.2972 259.344 73.4863 259.793 74.5779C260.261 75.6695 260.904 76.6247 261.723 77.4434C262.561 78.2621 263.535 78.8956 264.647 79.3439C265.758 79.7923 266.966 80.0164 268.272 80.0164Z" fill="white"/>
+<path d="M297.947 81.3907C295.413 81.3907 293.415 80.65 291.953 79.1685C290.491 77.687 289.76 75.4843 289.76 72.5604V60.7769H291.251V72.5019C291.251 75.0555 291.836 76.9463 293.006 78.1744C294.175 79.4024 295.832 80.0164 297.976 80.0164C300.101 80.0164 301.748 79.4024 302.918 78.1744C304.087 76.9463 304.672 75.0555 304.672 72.5019V60.7769H306.163V72.5604C306.163 75.4843 305.432 77.687 303.97 79.1685C302.508 80.65 300.501 81.3907 297.947 81.3907Z" fill="white"/>
+<path d="M318.969 81.2445V60.7769H320.227L334.817 79.4024H334.145V60.7769H335.636V81.2445H334.408L319.788 62.619H320.46V81.2445H318.969Z" fill="white"/>
+<path d="M348.631 81.2445V60.7769H356.731C358.894 60.7769 360.795 61.2155 362.432 62.0927C364.07 62.9699 365.337 64.1784 366.233 65.7184C367.15 67.2583 367.608 69.0224 367.608 71.0107C367.608 72.999 367.15 74.7631 366.233 76.303C365.337 77.843 364.07 79.0515 362.432 79.9287C360.795 80.8059 358.894 81.2445 356.731 81.2445H348.631ZM350.122 79.8995H356.614C358.543 79.8995 360.22 79.5194 361.643 78.7591C363.066 77.9989 364.167 76.9561 364.947 75.6305C365.727 74.2855 366.116 72.7456 366.116 71.0107C366.116 69.2758 365.727 67.7456 364.947 66.4201C364.167 65.0751 363.066 64.0225 361.643 63.2623C360.22 62.502 358.543 62.1219 356.614 62.1219H350.122V79.8995Z" fill="white"/>
+<path d="M379.952 70.192H391.033V71.5078H379.952V70.192ZM380.127 79.8995H392.759V81.2445H378.636V60.7769H392.32V62.1219H380.127V79.8995Z" fill="white"/>
+<path d="M404.043 81.2445V60.7769H411.382C413.098 60.7769 414.57 61.0498 415.798 61.5956C417.026 62.1414 417.971 62.9309 418.634 63.964C419.297 64.9776 419.628 66.2154 419.628 67.6774C419.628 69.1004 419.297 70.3284 418.634 71.3616C417.971 72.3752 417.026 73.1647 415.798 73.73C414.57 74.2758 413.098 74.5487 411.382 74.5487H404.862L405.535 73.8469V81.2445H404.043ZM418.254 81.2445L412.932 73.8177H414.628L419.95 81.2445H418.254ZM405.535 73.9346L404.862 73.2329H411.382C413.585 73.2329 415.252 72.7456 416.382 71.7709C417.532 70.7963 418.108 69.4318 418.108 67.6774C418.108 65.9035 417.532 64.539 416.382 63.5839C415.252 62.6092 413.585 62.1219 411.382 62.1219H404.862L405.535 61.3909V73.9346Z" fill="white"/>
+<path d="M24.1127 81.3697C22.0929 68.4381 13.0788 59.1475 0 57.4296C12.82 55.9167 22.3349 46.515 24.096 33.3697C26.4163 46.5407 35.0464 55.6005 48 57.4039C35.5138 59.3185 26.4079 68.0535 24.121 81.3612L24.1127 81.3697Z" fill="white"/>
+</svg></div>
+      <p>Growth Continues. Even When You Don't. You have built something worth protecting. Now build the structure that lets it grow without carrying it all yourself.</p>
+      <div class="footer-social">
+        <a href="#">in</a>
+        <a href="#">𝕏</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>The Work</h4>
+      <ul>
+        <li><a href="#solution">Founder Friction</a></li>
+        <li><a href="#solution">Founder Flow</a></li>
+        <li><a href="#solution">Founder Freedom</a></li>
+        <li><a href="#partnership">The Partnership</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#leadmagnet">Unburdened Founder Map</a></li>
+        <li><a href="#credibility">Press &amp; Recognition</a></li>
+        <li><a href="#testimonials">Client Stories</a></li>
+        <li><a href="#about">About Mitali</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Start the Conversation</h4>
+      <ul>
+        <li><a href="#">[Email Address Placeholder]</a></li>
+        <li><a href="#">[Contact Page URL Placeholder]</a></li>
+        <li><a href="#leadmagnet">Start the Conversation</a></li>
+        <li><a href="#partnership">Apply for the Partnership</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Impact Icon AI trading as The Unburdened Founder. All rights reserved.</p>
+    <div class="f-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Engagement</a>
+    </div>
+  </div>
+</footer>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Custom cursor — 4-corner star
+  const cur = document.getElementById('cursor');
+  cur.textContent = '✦';
+  document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX + 'px';
+    cur.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a,button,.cred-badge,.d-cell,.pc,.t-card,.s-card,.prob-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('hover'));
+  });
+
+  // Nav scroll
+  // Testimonial slider
+  (function(){
+    const slides = document.querySelectorAll('.test-slide');
+    const dots = document.querySelectorAll('.test-dot');
+    let current = 0;
+    function goTo(n){
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (n + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+    document.getElementById('testNext').addEventListener('click', () => goTo(current + 1));
+    document.getElementById('testPrev').addEventListener('click', () => goTo(current - 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  })();
+
+  // Mobile menu
+  function openMobile() { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Generate dot grid
+  con
