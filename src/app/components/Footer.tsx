@@ -92,6 +92,8 @@ function FooterCol({ title, links, hrefs }: { title: string; links: string[]; hr
           <li key={l}>
             <a
               href={hrefs[i]}
+              target={hrefs[i]?.startsWith("http") ? "_blank" : undefined}
+              rel={hrefs[i]?.startsWith("http") ? "noopener noreferrer" : undefined}
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "16px", color: "rgba(244,241,235,0.75)", textDecoration: "none", fontWeight: 300, transition: "color 0.2s" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#F4F1EB")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(244,241,235,0.75)")}
