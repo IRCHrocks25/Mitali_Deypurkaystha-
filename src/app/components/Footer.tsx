@@ -45,7 +45,7 @@ export function Footer() {
         {/* About */}
         <FooterCol title="About" links={["About Mitali", "Testimonials", "Free Scorecard"]} hrefs={["#about", "#testimonials", "#leadmagnet"]} />
         {/* Contact */}
-        <FooterCol title="Contact" links={["mitali@unburdenedfounder.com", "LinkedIn", "Book a Call"]} hrefs={["mailto:mitali@unburdenedfounder.com", "https://www.linkedin.com/in/mitalidey/", "YOUR_KATALYST_CALENDAR_URL"]} />
+        <FooterCol title="Contact" links={["mitali@unburdenedfounder.com", "LinkedIn", "Book a Call"]} hrefs={["mailto:mitali@unburdenedfounder.com", "https://www.linkedin.com/in/mitalidey/", "https://l.industryrockstars.ch/widget/bookings/book-a-call-with-mitali"]} />
       </div>
 
       {/* Bottom */}
